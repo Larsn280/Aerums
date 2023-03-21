@@ -14,7 +14,7 @@ builder.Services.AddDbContext<AerumsContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("Sqlite"))
 );
 
-builder.Services.AddIdentity<User, IdentityRole>(
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(
   options =>
     {
       options.Password.RequireLowercase = false;

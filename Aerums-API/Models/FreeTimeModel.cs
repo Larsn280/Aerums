@@ -8,6 +8,6 @@ namespace Aerums_API.Models
         public TimeOnly EndTime { get; set; }
         public string? Place { get; set; }
         public string? Note { get; set; }
-        public User User { get; set; }
+        public ApplicationUser? User { get; set; }
     }
 }

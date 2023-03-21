@@ -11,8 +11,8 @@ namespace Aerums_API.Models
         public bool IsConfirmedAttendingUser { get; set; }
         public List<string>? Place { get; set; }
         public List<string>? Note { get; set; }
-        public User HostingUser { get; set; }
-        public List<User> AttendingUser { get; set; }
+        public ApplicationUser? HostingUser { get; set; }
+        public List<ApplicationUser>? AttendingUser { get; set; }
     }
 
 }
