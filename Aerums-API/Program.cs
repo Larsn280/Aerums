@@ -1,5 +1,6 @@
 using System.Text;
 using Aerums_API.Data;
+using Aerums_API.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
