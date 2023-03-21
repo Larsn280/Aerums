@@ -16,6 +16,7 @@ namespace Aerums_API.Models
         public string? Note {get; set;}
         // public ApplicationUser? HostingUser { get; set; }
         // public List<ApplicationUser>? AttendingUser { get; set; }
+        public virtual ICollection<ApplicationUser>? ApplicationUsers { get; set; }
     }
 
 }

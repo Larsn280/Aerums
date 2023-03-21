@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aerums_API.Data.Migrations
 {
     [DbContext(typeof(AerumsContext))]
-    [Migration("20230321213710_Start")]
+    [Migration("20230321221725_Start")]
     partial class Start
     {
         /// <inheritdoc />
@@ -28,6 +28,9 @@ namespace Aerums_API.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("BookingModelBookingsId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
@@ -41,6 +44,9 @@ namespace Aerums_API.Data.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("TEXT");
+
+                    b.Property<int?>("FreeTimeModelFreeTimeId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("LastName")
                         .HasColumnType("TEXT");
@@ -79,6 +85,10 @@ namespace Aerums_API.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BookingModelBookingsId");
+
+                    b.HasIndex("FreeTimeModelFreeTimeId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -276,6 +286,21 @@ namespace Aerums_API.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Aerums_API.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("Aerums_API.Models.BookingModel", "BookingModel")
+                        .WithMany("ApplicationUsers")
+                        .HasForeignKey("BookingModelBookingsId");
+
+                    b.HasOne("Aerums_API.Models.FreeTimeModel", "FreeTimeModel")
+                        .WithMany("ApplicationUsers")
+                        .HasForeignKey("FreeTimeModelFreeTimeId");
+
+                    b.Navigation("BookingModel");
+
+                    b.Navigation("FreeTimeModel");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -325,6 +350,16 @@ namespace Aerums_API.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Aerums_API.Models.BookingModel", b =>
+                {
+                    b.Navigation("ApplicationUsers");
+                });
+
+            modelBuilder.Entity("Aerums_API.Models.FreeTimeModel", b =>
+                {
+                    b.Navigation("ApplicationUsers");
                 });
 #pragma warning restore 612, 618
         }
