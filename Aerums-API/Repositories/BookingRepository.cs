@@ -2,6 +2,7 @@ using Aerums_API.Data;
 using Aerums_API.Interfaces;
 using Aerums_API.Models;
 using Aerums_API.ViewModels.BookingViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Aerums_API.Repositories
 {
@@ -14,9 +15,9 @@ namespace Aerums_API.Repositories
             _context = context;
         }
 
-        public List<BookingViewModel> ListAllBookings()
+        public async Task<List<BookingViewModel>> ListAllBookings()
         {
-            List<BookingModel> allBookings = _context.BookingModel!.ToList();
+            List<BookingModel> allBookings = await _context.BookingModel!.ToListAsync();
             List<BookingViewModel> booked = new List<BookingViewModel>();
             BookingViewModel newBooking = new BookingViewModel();
 
