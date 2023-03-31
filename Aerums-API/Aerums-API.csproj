@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Aerums_API</RootNamespace>
+    <UserSecretsId>70c1d98c-099d-4888-97c6-b1dd6f5f311e</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
