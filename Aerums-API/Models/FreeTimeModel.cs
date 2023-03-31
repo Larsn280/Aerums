@@ -6,8 +6,8 @@ namespace Aerums_API.Models
         [Key]
         public int FreeTimeId { get; set; }
         public DateTime Date { get; set; }
-        public TimeOnly StartTime { get; set; }
-        public TimeOnly EndTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
         public string? Place { get; set; }
         public string? Note { get; set; }
         // public ApplicationUser? User { get; set; }

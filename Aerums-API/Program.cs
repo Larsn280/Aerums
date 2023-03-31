@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddDbContext<AerumsContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("Sqlite"))
+    options.UseSqlServer(builder.Configuration.GetConnectionString("default"))
 );
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(

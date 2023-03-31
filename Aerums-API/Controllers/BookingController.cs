@@ -19,7 +19,7 @@ namespace Aerums_API.Controllers
         [HttpGet("list")]
         public async Task<ActionResult<List<BookingViewModel>>> ListAllBookings()
         {
-            return Ok(await _bookingRepo.ListAllBookings());
+            return Ok(await _bookingRepo.ListAllBookingsAsync());
         }
     }
 }

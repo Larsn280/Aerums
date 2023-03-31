@@ -15,7 +15,7 @@ namespace Aerums_API.Repositories
             _context = context;
         }
 
-        public async Task<List<BookingViewModel>> ListAllBookings()
+        public async Task<List<BookingViewModel>> ListAllBookingsAsync()
         {
             List<BookingModel> allBookings = await _context.BookingModel!.ToListAsync();
             List<BookingViewModel> booked = new List<BookingViewModel>();
