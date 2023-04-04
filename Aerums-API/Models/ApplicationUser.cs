@@ -5,7 +5,7 @@ namespace Aerums_API.Models
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public virtual BookingModel? BookingModel { get; set; }
-        public virtual FreeTimeModel? FreeTimeModel { get; set; }
+        public List<BookingModel>? BookingModel { get; set; }
+        public List<FreeTimeModel>? FreeTimeModel { get; set; }
     }
 }
