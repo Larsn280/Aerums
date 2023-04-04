@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Aerums_API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,39 +17,41 @@ builder.Services.AddDbContext<AerumsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("default"))
 );
 
+builder.Services.AddScoped<DatabaseService>();
+
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(
   options =>
     {
-      options.Password.RequireLowercase = false;
-      options.Password.RequireUppercase = false;
-      options.Password.RequiredLength = 1;
-      options.Password.RequireNonAlphanumeric = false;
-      options.Password.RequireDigit = false;
+        options.Password.RequireLowercase = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequiredLength = 1;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireDigit = false;
 
-      options.User.RequireUniqueEmail = true;
+        options.User.RequireUniqueEmail = true;
 
-      options.Lockout.MaxFailedAccessAttempts = 5;
-      options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+        options.Lockout.MaxFailedAccessAttempts = 5;
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
     }
 ).AddEntityFrameworkStores<AerumsContext>();
 
 builder.Services.AddAuthentication(options =>
 {
-  options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-  options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
-  options.TokenValidationParameters = new TokenValidationParameters
-  {
-    ValidateIssuerSigningKey = true,
-    IssuerSigningKey = new SymmetricSecurityKey(
-          Encoding.ASCII.GetBytes(builder.Configuration.GetValue<string>("apiKey")!)
-      ),
-    ValidateLifetime = true,
-    ValidateAudience = false,
-    ValidateIssuer = false,
-    ClockSkew = TimeSpan.Zero
-  };
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.ASCII.GetBytes(builder.Configuration.GetValue<string>("apiKey")!)
+        ),
+        ValidateLifetime = true,
+        ValidateAudience = false,
+        ValidateIssuer = false,
+        ClockSkew = TimeSpan.Zero
+    };
 });
 
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
@@ -61,15 +64,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
 
-  options.AddPolicy("aerums-react",
-    policy =>
-    {
-      policy.AllowAnyHeader();
-      policy.AllowAnyMethod();
-      policy.WithOrigins(
-        "http://localhost:3000");
-    }
-  );
+    options.AddPolicy("aerums-react",
+      policy =>
+      {
+          policy.AllowAnyHeader();
+          policy.AllowAnyMethod();
+          policy.WithOrigins(
+          "http://localhost:3000");
+      }
+    );
 });
 
 var app = builder.Build();
@@ -88,5 +91,22 @@ app.UseCors("lnschool-react");
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var ctx = scope.ServiceProvider
+        .GetRequiredService<DatabaseService>();
+
+    if (app.Environment.IsProduction())
+    {
+        await ctx.CreateIfNotExist();
+    }
+
+    if (app.Environment.IsDevelopment())
+    {
+        await ctx.RecreateAndSeed();
+    }
+}
+
 
 app.Run();
