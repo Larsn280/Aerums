@@ -1,5 +1,6 @@
 using System.Text;
 using Aerums_API.Data;
+using Aerums_API.Helpers;
 using Aerums_API.Interfaces;
 using Aerums_API.Models;
 using Aerums_API.Repositories;
@@ -52,6 +53,8 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -2,6 +2,7 @@ using Aerums_API.Data;
 using Aerums_API.Interfaces;
 using Aerums_API.Models;
 using Aerums_API.ViewModels.BookingViewModels;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace Aerums_API.Repositories
@@ -9,9 +10,11 @@ namespace Aerums_API.Repositories
     public class BookingRepository : IBookingRepository
     {
         private readonly AerumsContext _context;
+        private readonly IMapper _mapper;
 
-        public BookingRepository(AerumsContext context)
+        public BookingRepository(AerumsContext context, IMapper mapper)
         {
+            _mapper = mapper;
             _context = context;
         }
 
@@ -58,6 +61,16 @@ namespace Aerums_API.Repositories
             }
 
             return booked;
+        }
+
+        public async Task AddBookingAsync(PostBookingsViewModel model){
+            try {
+                var bookingToAdd = _mapper.Map<BookingModel>(model);
+
+                await _context.BookingModel!.AddAsync(bookingToAdd); 
+            } catch {
+                throw new Exception($"Kundum Int leg til an dar: {model}");
+            }
         }
     }
 }

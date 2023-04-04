@@ -32,5 +32,11 @@ namespace Aerums_API.Controllers
                 return Ok(response);
             
         }
+
+        [HttpPost()]
+        public async Task<ActionResult> AddBooking(PostBookingsViewModel model)
+        {
+            return Ok();
+        }
     }
 }
