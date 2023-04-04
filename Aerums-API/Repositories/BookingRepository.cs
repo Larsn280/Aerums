@@ -32,12 +32,12 @@ namespace Aerums_API.Repositories
 
             BookingViewModel booking = new BookingViewModel();
 
-            if(selectedBooking != null) {
+            if (selectedBooking != null)
+            {
                 booking.Date = selectedBooking.Date;
                 booking.StartTime = selectedBooking.StartTime;
                 booking.EndTime = selectedBooking.EndTime;
-                booking.IsConfirmedHostingUser = selectedBooking.IsConfirmedHostingUser;
-                booking.IsConfirmedAttendingUser = selectedBooking.IsConfirmedAttendingUser;
+                booking.IsConfirmed = selectedBooking.IsConfirmed;
                 booking.Place = selectedBooking.Place;
                 booking.Note = selectedBooking.Note;
 
@@ -52,15 +52,15 @@ namespace Aerums_API.Repositories
             List<BookingViewModel> booked = new List<BookingViewModel>();
             BookingViewModel newBooking = new BookingViewModel();
 
-            foreach(var booking in allBookings){
+            foreach (var booking in allBookings)
+            {
 
                 newBooking = new BookingViewModel
                 {
                     Date = booking.Date,
                     StartTime = booking.StartTime,
                     EndTime = booking.EndTime,
-                    IsConfirmedHostingUser = booking.IsConfirmedHostingUser,
-                    IsConfirmedAttendingUser = booking.IsConfirmedAttendingUser,
+                    IsConfirmed = booking.IsConfirmed,
                     Place = booking.Place,
                     Note = booking.Note
                 };

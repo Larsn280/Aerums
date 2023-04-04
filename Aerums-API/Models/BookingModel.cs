@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Aerums_API.Models
 {
     public class BookingModel
@@ -8,15 +10,11 @@ namespace Aerums_API.Models
         public DateTime Date { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public bool IsConfirmedHostingUser { get; set; } = false;
-        public bool IsConfirmedAttendingUser { get; set; } = false;
-        // public List<string>? Place { get; set; }
-        public string? Place {get; set;} 
-        // public List<string>? Note { get; set; }
-        public string? Note {get; set;}
-        // public ApplicationUser? HostingUser { get; set; }
-        // public List<ApplicationUser>? AttendingUser { get; set; }
-        public virtual ICollection<ApplicationUser>? ApplicationUsers { get; set; }
+        public bool IsConfirmed { get; set; } = false;
+        public string? Place { get; set; }
+        public string? Note { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public ApplicationUser? ApplicationUsers { get; set; }
     }
 
 }
