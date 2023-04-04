@@ -6,10 +6,8 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aerums_API.Repositories
-{
-    public class BookingRepository : IBookingRepository
-    {
+namespace Aerums_API.Repositories {
+    public class BookingRepository : IBookingRepository {
         private readonly AerumsContext _context;
         private readonly IMapper _mapper;
 
@@ -30,10 +28,9 @@ namespace Aerums_API.Repositories
         {
             var selectedBooking = await _context.BookingModel!.FindAsync(id);
 
-            BookingViewModel booking = new BookingViewModel();
+            BookingViewModel booking = new BookingViewModel ();
 
-            if (selectedBooking != null)
-            {
+            if (selectedBooking != null) {
                 booking.Date = selectedBooking.Date;
                 booking.StartTime = selectedBooking.StartTime;
                 booking.EndTime = selectedBooking.EndTime;
@@ -46,17 +43,14 @@ namespace Aerums_API.Repositories
             return null!;
         }
 
-        public async Task<List<BookingViewModel>> ListAllBookingsAsync()
-        {
-            List<BookingModel> allBookings = await _context.BookingModel!.ToListAsync();
-            List<BookingViewModel> booked = new List<BookingViewModel>();
-            BookingViewModel newBooking = new BookingViewModel();
+        public async Task<List<BookingViewModel>> ListAllBookingsAsync () {
+            List<BookingModel> allBookings = await _context.BookingModel!.ToListAsync ();
+            List<BookingViewModel> booked = new List<BookingViewModel> ();
+            BookingViewModel newBooking = new BookingViewModel ();
 
-            foreach (var booking in allBookings)
-            {
+            foreach (var booking in allBookings) {
 
-                newBooking = new BookingViewModel
-                {
+                newBooking = new BookingViewModel {
                     Date = booking.Date,
                     StartTime = booking.StartTime,
                     EndTime = booking.EndTime,
@@ -65,7 +59,7 @@ namespace Aerums_API.Repositories
                     Note = booking.Note
                 };
 
-                booked.Add(newBooking);
+                booked.Add (newBooking);
             }
 
             return booked;

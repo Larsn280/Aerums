@@ -1,4 +1,4 @@
-
+using Aerums_API.Models;
 using Aerums_API.ViewModels.BookingViewModels;
 
 namespace Aerums_API.Interfaces
