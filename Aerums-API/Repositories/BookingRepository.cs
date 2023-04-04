@@ -3,6 +3,7 @@ using Aerums_API.Interfaces;
 using Aerums_API.Models;
 using Aerums_API.ViewModels.BookingViewModels;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Aerums_API.Repositories
@@ -16,6 +17,13 @@ namespace Aerums_API.Repositories
         {
             _mapper = mapper;
             _context = context;
+        }
+
+        public async Task<BookingViewModel?> GetBookingAsync(string place)
+        {
+            return await _context.BookingModel.Where(c => c.Place.ToLower() == place.ToLower())
+            .ProjectTo<BookingViewModel>(_mapper.ConfigurationProvider)
+            .SingleOrDefaultAsync();
         }
 
         public async Task<BookingViewModel> GetBookingByIdAsync(int id)
@@ -71,6 +79,11 @@ namespace Aerums_API.Repositories
             } catch {
                 throw new Exception($"Kundum Int leg til an dar: {model}");
             }
+        }
+
+        public async Task<bool> SaveAllAsync()
+        {
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }
