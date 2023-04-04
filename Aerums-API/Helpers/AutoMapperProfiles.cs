@@ -8,7 +8,7 @@ namespace Aerums_API.Helpers
     {
         public AutoMapperProfiles() {
             CreateMap<PostBookingsViewModel, BookingModel>();
-            CreateMap<BookingViewModel,BookingModel>()
+            CreateMap<BookingModel, BookingViewModel>()
             .ForMember(dest => dest.BookingsId, options => options.MapFrom(src => src.BookingsId));
         }
     }

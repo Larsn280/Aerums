@@ -51,6 +51,7 @@ namespace Aerums_API.Repositories {
             foreach (var booking in allBookings) {
 
                 newBooking = new BookingViewModel {
+                    BookingsId = booking.BookingsId,
                     Date = booking.Date,
                     StartTime = booking.StartTime,
                     EndTime = booking.EndTime,
