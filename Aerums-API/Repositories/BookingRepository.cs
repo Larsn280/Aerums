@@ -15,6 +15,26 @@ namespace Aerums_API.Repositories
             _context = context;
         }
 
+        public async Task<BookingViewModel> GetBookingByIdAsync(int id)
+        {
+            var selectedBooking = await _context.BookingModel!.FindAsync(id);
+
+            BookingViewModel booking = new BookingViewModel();
+
+            if(selectedBooking != null) {
+                booking.Date = selectedBooking.Date;
+                booking.StartTime = selectedBooking.StartTime;
+                booking.EndTime = selectedBooking.EndTime;
+                booking.IsConfirmedHostingUser = selectedBooking.IsConfirmedHostingUser;
+                booking.IsConfirmedAttendingUser = selectedBooking.IsConfirmedAttendingUser;
+                booking.Place = selectedBooking.Place;
+                booking.Note = selectedBooking.Note;
+
+                return booking;
+            }
+            return null!;
+        }
+
         public async Task<List<BookingViewModel>> ListAllBookingsAsync()
         {
             List<BookingModel> allBookings = await _context.BookingModel!.ToListAsync();
@@ -25,7 +45,13 @@ namespace Aerums_API.Repositories
 
                 newBooking = new BookingViewModel
                 {
-                    Place = booking.Place
+                    Date = booking.Date,
+                    StartTime = booking.StartTime,
+                    EndTime = booking.EndTime,
+                    IsConfirmedHostingUser = booking.IsConfirmedHostingUser,
+                    IsConfirmedAttendingUser = booking.IsConfirmedAttendingUser,
+                    Place = booking.Place,
+                    Note = booking.Note
                 };
 
                 booked.Add(newBooking);
