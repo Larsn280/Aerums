@@ -6,5 +6,7 @@ namespace Aerums_API.Interfaces
     public interface IBookingRepository
     {
         public Task<List<BookingViewModel>> ListAllBookingsAsync();
+
+        public Task<BookingViewModel> GetBookingByIdAsync(int id);
     }
 }

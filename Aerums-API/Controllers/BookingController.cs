@@ -21,5 +21,16 @@ namespace Aerums_API.Controllers
         {
             return Ok(await _bookingRepo.ListAllBookingsAsync());
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BookingViewModel>> GetBookingById(int id) {
+
+            var response = await _bookingRepo.GetBookingByIdAsync(id);
+
+            if(response is null)
+                return NotFound($"Kundum int fin andar gamtfiskn med id: {id}");
+                return Ok(response);
+            
+        }
     }
 }
