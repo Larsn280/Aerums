@@ -29,15 +29,22 @@ namespace Aerums_API.Controllers {
 
         }
 
-        [HttpGet ("{id}")]
-        public async Task<ActionResult<BookingModel>> DeleteBooking (int id) {
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteBooking (int id) {
+            try {
+            await _bookingRepo.DeleteBooking(id);
 
-            var response = await _bookingRepo.DeleteBooking (id);
+            if (await _bookingRepo.SaveAllAsync()) 
+            {
+                return NoContent();
+            }
 
-            if (response is null)
-                return NotFound ($"Kundum int ta bort andar gamtfiskn med id: {id}");
-            return Ok (response);
+            return StatusCode(500, $"Kundum int ta bort andar gamtfiskn med id: {id}");
 
+            } catch (Exception ex) {
+
+            return StatusCode (500, ex.Message);
+            }
         }
     }
 }

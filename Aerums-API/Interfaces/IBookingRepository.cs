@@ -7,7 +7,9 @@ namespace Aerums_API.Interfaces {
 
         public Task<BookingViewModel> GetBookingByIdAsync (int id);
 
-        public Task<BookingModel> DeleteBooking (int id);
+        public Task DeleteBooking (int id);
+
+        public Task<bool> SaveAllAsync();
 
     }
 }

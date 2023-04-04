@@ -52,10 +52,28 @@ namespace Aerums_API.Repositories {
             return booked;
         }
 
-        public async Task<BookingModel> DeleteBooking (int id) {
+        public async Task DeleteBooking (int id) {
+            try {
+
             var selectedBooking = await _context.BookingModel!.FindAsync (id);
+
+            if(selectedBooking is null) {
+                throw new Exception($"Kundum int fin andar: {id}");
+            }
+
+            if(selectedBooking is not null) {
+                _context.BookingModel.Remove(selectedBooking);
+            }
             _context.BookingModel.Remove (selectedBooking!);
-            return selectedBooking!;
+            } catch {
+                throw new Exception($"Kundum Int fin andar: {id}");
+            }
+            
+        }
+
+        public async Task<bool> SaveAllAsync()
+        {
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }
