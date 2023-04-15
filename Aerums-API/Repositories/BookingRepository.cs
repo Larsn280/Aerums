@@ -75,6 +75,29 @@ namespace Aerums_API.Repositories {
                 throw new Exception($"Kundum Int leg til an dar: {model}");
             }
         }
+
+        public async Task EditBookingAsync(int bookingsId, PostBookingsViewModel model){
+
+           try { 
+            var booking = await _context.BookingModel!.FindAsync(bookingsId);
+
+            if(booking == null)
+            {
+                throw new Exception($"Kundum Int fin andar gamtfiskn: {bookingsId}");
+            }
+
+            booking.Date = model.Date;
+            booking.StartTime = model.StartTime;
+            booking.EndTime = model.EndTime;
+            booking.Place = booking.Place;
+            booking.Note = booking.Note;
+
+            _context.BookingModel.Update(booking);
+            } catch {
+                throw new Exception($"Kundum Int fin andar gamtfiskn: {bookingsId}");
+            }
+        }
+
         public async Task DeleteBooking (int id) {
             try {
 

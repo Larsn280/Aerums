@@ -80,5 +80,25 @@ namespace Aerums_API.Controllers {
                 return StatusCode(500, error);
             }
         }
+
+        [HttpPut("{bookingsId}")]
+        public async Task<ActionResult> EditBooking(int bookingsId, PostBookingsViewModel model)
+        {
+            try
+            {
+            await _bookingRepo.EditBookingAsync(bookingsId, model);
+
+            if(await _bookingRepo.SaveAllAsync())
+            {
+                return NoContent();
+            }
+
+            return StatusCode(500, "Ed wat fil mes uldum djäro edar");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }
