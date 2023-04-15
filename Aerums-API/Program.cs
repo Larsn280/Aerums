@@ -89,7 +89,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("lnschool-react");
+app.UseCors("aerums-react");
 
 app.UseAuthorization();
 

@@ -1,9 +1,17 @@
+import { NavLink } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+
 function Home() {
+  const { setAuth } = useAuth();
+
+  const logOut = () => {
+    localStorage.clear();
+    setAuth({});
+  };
   return (
     <>
       <h1 className="page-title">Välkommen till Aerums!</h1>
       <div className="instructions">
-        <div className="homePageImg-container"></div>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
           aliquam quae, aut eius nostrum, officia distinctio harum quos incidunt
@@ -31,6 +39,9 @@ function Home() {
           saepe aperiam incidunt quibusdam!
         </div>
       </div>
+      <NavLink onClick={logOut} to="/login">
+        <button>Logga ut</button>
+      </NavLink>
     </>
   );
 }
