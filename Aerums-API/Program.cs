@@ -56,6 +56,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IFreeTimeRepository, FreeTimeRepository>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
