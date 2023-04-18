@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aerums_API.Data.Migrations
 {
     [DbContext(typeof(AerumsContext))]
-    [Migration("20230404190213_v1")]
-    partial class v1
+    [Migration("20230418194530_AddedFriendsTable")]
+    partial class AddedFriendsTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -163,6 +163,28 @@ namespace Aerums_API.Data.Migrations
                     b.HasIndex("ApplicationUser");
 
                     b.ToTable("FreeTimeModel");
+                });
+
+            modelBuilder.Entity("Aerums_API.Models.FriendModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FriendId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsFriendConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FriendModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
