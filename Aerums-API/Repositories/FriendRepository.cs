@@ -17,7 +17,7 @@ namespace Aerums_API.Repositories
             _context = context;
         }
 
-        public async Task<List<FriendViewModel>> ListAllFriendsAsync() {
+        public Task<List<FriendViewModel>> ListAllFriendsAsync() {
             throw new Exception("Nej");
         }
 
