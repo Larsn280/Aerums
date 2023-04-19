@@ -17,9 +17,9 @@ namespace Aerums_API.Repositories {
             _context = context;
         }
 
-        public async Task<BookingViewModel?> GetBookingAsync(string place)
+        public async Task<BookingViewModel?> GetBookingAsync(string? place)
         {
-            return await _context.BookingModel.Where(c => c.Place.ToLower() == place.ToLower())
+            return await _context.BookingModel!.Where(c => c.Place!.ToLower() == place!.ToLower())
             .ProjectTo<BookingViewModel>(_mapper.ConfigurationProvider)
             .SingleOrDefaultAsync();
         }

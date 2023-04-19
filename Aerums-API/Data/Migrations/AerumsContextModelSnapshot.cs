@@ -162,6 +162,28 @@ namespace Aerums_API.Data.Migrations
                     b.ToTable("FreeTimeModel");
                 });
 
+            modelBuilder.Entity("Aerums_API.Models.FriendModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FriendId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsFriendConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FriendModel");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
