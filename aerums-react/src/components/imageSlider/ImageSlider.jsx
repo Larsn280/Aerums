@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./HeroSection.css"
+import "./ImageSlider.css"
 import image1 from '../../images/Friends.jpg';
 import image2 from '../../images/AerumsSlider.png';
 import image3 from '../../images/AerumsSlider1.png';
