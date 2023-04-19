@@ -1,0 +1,16 @@
+.logoContainer {
+  position: relative;
+  text-align: center;
+  color: white;
+  font-family: "Irish Grover", cursive;
+  font-size: 50px;
+}
+.logoImage {
+  width: 100%;
+}
+.logoText {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
