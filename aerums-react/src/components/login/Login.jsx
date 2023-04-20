@@ -67,7 +67,7 @@ function Login() {
         <section className="form-wrapper">
           <form className="form" onSubmit={handleLogin}>
             <div className="form-control">
-              <label htmlFor="userName">Användarnamn/Email</label>
+              <label className="userName" htmlFor="userName">E-mail </label>
               <input
                 onChange={onHandleUserNameTextChanged}
                 value={userName}
@@ -88,13 +88,13 @@ function Login() {
               />
             </div>
             <div className="buttons">
-              <button type="submit" className="btn">
+              <button type="submit" className="greenBtn">
                 Logga In
               </button>
             </div>
-            <p>Not registered?</p>
+            <p>Inte medlem än?</p>
             <Link to={"/register"}>
-              <p>Click here!</p>
+              <p>Klicka här!</p>
             </Link>
           </form>
         </section>
