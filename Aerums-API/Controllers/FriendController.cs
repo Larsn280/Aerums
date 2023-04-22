@@ -18,9 +18,9 @@ namespace Aerums_API.Controllers
             _friendRepo = friendRepo;
         }
         
-        [HttpGet ("list")]
-        public async Task<ActionResult<List<FriendViewModel>>> ListAllFriends () {
-            return Ok (await _friendRepo.ListAllFriendsAsync ());
+        [HttpGet ("{userId}")]
+        public async Task<ActionResult<List<FriendViewModel>>> ListAllFriends (string userId) {
+            return Ok(await _friendRepo.ListAllFriendsAsync (userId));
         }
 
         [HttpPost()]

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Aerums_API.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedFriendsTable : Migration
+    public partial class RemovedVirtualDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
