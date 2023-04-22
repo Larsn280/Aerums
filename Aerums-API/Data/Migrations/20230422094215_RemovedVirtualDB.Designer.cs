@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aerums_API.Data.Migrations
 {
     [DbContext(typeof(AerumsContext))]
-    [Migration("20230418194530_AddedFriendsTable")]
-    partial class AddedFriendsTable
+    [Migration("20230422094215_RemovedVirtualDB")]
+    partial class RemovedVirtualDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
