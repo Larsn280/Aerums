@@ -1,0 +1,23 @@
+.navbarContainer {
+  float: left;
+}
+.navbarLogo {
+  width: 300px;
+}
+.navbarTop {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+}
+.navbarBottom {
+}
+.nav_Link {
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+}
+.nav_Link:hover {
+  color: green;
+}

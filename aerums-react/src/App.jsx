@@ -4,6 +4,7 @@ import Register from "./components/register/Register";
 import RequireAuth from "./components/authentication/RequireAuth";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/layOut/Layout";
+import Navbar from './components/navbar/Navbar'
 
 import "./utilities.css";
 import "./App.css";
@@ -12,10 +13,11 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        <Route path="/home" element={<Home />}/>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route element={<RequireAuth />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Navbar />}/>
         </Route>
       </Route>
     </Routes>
