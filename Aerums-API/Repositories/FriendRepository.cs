@@ -17,8 +17,34 @@ namespace Aerums_API.Repositories
             _context = context;
         }
 
-        public Task<List<FriendViewModel>> ListAllFriendsAsync() {
-            throw new Exception("Nej");
+        public async Task<List<FriendViewModel>> ListAllFriendsAsync(string userId) {
+
+            List<FriendViewModel> allMyFriends = new List<FriendViewModel>();
+            FriendViewModel newFriend = new FriendViewModel();
+
+            var allFriends = _context.FriendModel!.Where(f => f.UserId == userId).ToList();
+
+            var allFriendsData = (from f in allFriends
+            join u in _userManager.Users on f.FriendId equals u.Id
+            select new FriendViewModel {
+                UserId = f.UserId,
+                FriendId = f.FriendId,
+                FriendName = $"{u.FirstName} {u.LastName}"
+            }).ToList();
+
+            
+            foreach(var friend in allFriendsData) {
+
+                newFriend = new FriendViewModel {
+                    UserId = friend.UserId,
+                    FriendId = friend.FriendId,
+                    FriendName = friend.FriendName
+                };
+
+                allMyFriends.Add(newFriend);
+            }
+
+            return await Task.FromResult(allMyFriends);
         }
 
         public async Task AddFriendAsync(PostFriendViewModel model)
