@@ -23,22 +23,22 @@ const Navbar = () => {
             <h1>Välkommen</h1>
           </div>
           <div className="navbarTop">
-            <NavLink className="nav_Link" to="/home">
+            <NavLink className="nav_Link" to="/">
               Kalender
             </NavLink>
-            <NavLink className="nav_Link" to="/home">
+            <NavLink className="nav_Link" to="/">
               Vänner
             </NavLink>
-            <NavLink className="nav_Link" to="/home">
+            <NavLink className="nav_Link" to="/">
               Lediga tider
             </NavLink>
-            <NavLink className="nav_Link" to="/home">
+            <NavLink className="nav_Link" to="/">
               Bokningar
             </NavLink>
-            <NavLink className="nav_Link" to="/home">
+            <NavLink className="nav_Link" to="/">
               Profil
             </NavLink>
-            <NavLink className="nav_Link" to="/home">
+            <NavLink className="nav_Link" to="/">
               Aktiviteter
             </NavLink>
             <NavLink className="nav_Link" onClick={logOut} to="/">
