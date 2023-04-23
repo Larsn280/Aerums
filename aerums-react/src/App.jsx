@@ -12,8 +12,11 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        {/* Protected Routes */}
         <Route element={<RequireAuth />}>
           <Route path="/" element={<Home />} />
         </Route>
