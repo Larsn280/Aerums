@@ -7,17 +7,19 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Aerums_API.Repositories
 {
-    public class FriendRepository : IFriendRepository {
+    public class FriendRepository : IFriendRepository
+    {
         private readonly AerumsContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public FriendRepository(AerumsContext context, UserManager<ApplicationUser> userManager) 
+        public FriendRepository(AerumsContext context, UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
             _context = context;
         }
 
-        public async Task<List<FriendViewModel>> ListAllFriendsAsync(string userId) {
+        public async Task<List<FriendViewModel>> ListAllFriendsAsync(string userId)
+        {
 
             List<FriendViewModel> allMyFriends = new List<FriendViewModel>();
             FriendViewModel newFriend = new FriendViewModel();
@@ -25,17 +27,20 @@ namespace Aerums_API.Repositories
             var allFriends = _context.FriendModel!.Where(f => f.UserId == userId).ToList();
 
             var allFriendsData = (from f in allFriends
-            join u in _userManager.Users on f.FriendId equals u.Id
-            select new FriendViewModel {
-                UserId = f.UserId,
-                FriendId = f.FriendId,
-                FriendName = $"{u.FirstName} {u.LastName}"
-            }).ToList();
+                                  join u in _userManager.Users on f.FriendId equals u.Id
+                                  select new FriendViewModel
+                                  {
+                                      UserId = f.UserId,
+                                      FriendId = f.FriendId,
+                                      FriendName = $"{u.FirstName} {u.LastName}"
+                                  }).ToList();
 
-            
-            foreach(var friend in allFriendsData) {
 
-                newFriend = new FriendViewModel {
+            foreach (var friend in allFriendsData)
+            {
+
+                newFriend = new FriendViewModel
+                {
                     UserId = friend.UserId,
                     FriendId = friend.FriendId,
                     FriendName = friend.FriendName
@@ -49,13 +54,16 @@ namespace Aerums_API.Repositories
 
         public async Task AddFriendAsync(PostFriendViewModel model)
         {
-            try {
+            try
+            {
                 FriendModel friendToAdd = new FriendModel();
                 friendToAdd.UserId = model.UserId;
                 friendToAdd.FriendId = model.FriendId;
 
                 await _context.FriendModel!.AddAsync(friendToAdd);
-            } catch {
+            }
+            catch
+            {
                 throw new Exception($"We could not add: {model}");
             }
         }

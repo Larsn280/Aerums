@@ -128,6 +128,14 @@ namespace Aerums_API.Services
             await _userManager.CreateAsync(testUser, "Passw0rd!");
             await _userManager.CreateAsync(test2User, "Passw0rd!");
 
+            var friends = new FriendModel()
+            {
+                UserId = testUser.Id,
+                FriendId = test2User.Id,
+                IsFriendConfirmed = true
+            };
+            await _ctx.AddRangeAsync(friends);
+
             await _ctx.SaveChangesAsync();
         }
         public async Task Recreate()
@@ -143,6 +151,11 @@ namespace Aerums_API.Services
         {
             await Recreate();
             await Seed();
+        }
+        public async Task CreateAndSeedIfNotExist()
+        {
+            bool createdDatabase = await _ctx.Database.EnsureCreatedAsync();
+            if (createdDatabase) await Seed();
         }
     }
 }

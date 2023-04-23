@@ -52,7 +52,7 @@ function Register() {
         <section className="form-wrapper">
           <form className="form" onSubmit={handleRegister}>
             <div className="form-control">
-              <label htmlFor="Email">Email</label>
+              <label className="userName" htmlFor="Email">E-mail</label>
               <input
                 onChange={onHandleEmailTextChanged}
                 value={email}
@@ -72,7 +72,7 @@ function Register() {
               />
             </div>
             <div className="buttons">
-              <button type="submit" className="btn">
+              <button type="submit" className="greenBtn">
                 Registrera
               </button>
             </div>
