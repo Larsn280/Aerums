@@ -1,5 +1,6 @@
 .navbarContainer {
   float: left;
+  position: fixed;
 }
 .navbarLogo {
   width: 300px;
