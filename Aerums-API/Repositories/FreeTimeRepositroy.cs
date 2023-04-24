@@ -10,10 +10,12 @@ namespace Aerums_API.Repositories
     public class FreeTimeRepository : IFreeTimeRepository
     {
         private readonly AerumsContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public FreeTimeRepository(AerumsContext context)
+        public FreeTimeRepository(AerumsContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task<List<FreeTimeViewModel>> ListAllFreeTimesAsync()
@@ -33,6 +35,7 @@ namespace Aerums_API.Repositories
                     EndTime = freeTime.EndTime,
                     Place = freeTime.Place,
                     Note = freeTime.Note,
+                    UserId = freeTime.ApplicationUsers.Id
                 };
 
                 freeTimers.Add(newFreeTime);
@@ -54,11 +57,34 @@ namespace Aerums_API.Repositories
                 freeTime.EndTime = selectedFreeTime.EndTime;
                 freeTime.Note = selectedFreeTime.Note;
                 freeTime.Place = selectedFreeTime.Place;
+                freeTime.UserId = selectedFreeTime.ApplicationUsers.Id;
 
                 return freeTime;
             }
 
             return null!;
+        }
+
+        public async Task<List<FreeTimeViewModel>> ListAllThisUsersFreetimeAsync(string userId)
+        {
+            List<FreeTimeViewModel> myFreetimes = new List<FreeTimeViewModel>();
+            FreeTimeViewModel foundFreetimes = new FreeTimeViewModel();
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                var allFreetimes = _context.FreeTimeModel!.Where(u => u.ApplicationUsers.Id == userId).ToList();
+                foreach (var freeTimes in allFreetimes)
+                {
+                    foundFreetimes = new FreeTimeViewModel
+                    {
+                        FreeTimeId = freeTimes.FreeTimeId,
+                        UserId = freeTimes.ApplicationUsers.Id
+                    };
+                    myFreetimes.Add(foundFreetimes);
+                }
+                return myFreetimes;
+            }
+            return null;
         }
         public async Task DeleteFreeTime(int id)
         {
