@@ -4,17 +4,22 @@ using Aerums_API.Models;
 using Aerums_API.ViewModels.BookingViewModels;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aerums_API.Repositories {
-    public class BookingRepository : IBookingRepository {
+namespace Aerums_API.Repositories
+{
+    public class BookingRepository : IBookingRepository
+    {
         private readonly AerumsContext _context;
         private readonly IMapper _mapper;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public BookingRepository(AerumsContext context, IMapper mapper)
+        public BookingRepository(AerumsContext context, IMapper mapper, UserManager<ApplicationUser> userManager)
         {
             _mapper = mapper;
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task<BookingViewModel?> GetBookingAsync(string? place)
@@ -28,9 +33,10 @@ namespace Aerums_API.Repositories {
         {
             var selectedBooking = await _context.BookingModel!.FindAsync(id);
 
-            BookingViewModel booking = new BookingViewModel ();
+            BookingViewModel booking = new BookingViewModel();
 
-            if (selectedBooking != null) {
+            if (selectedBooking != null)
+            {
                 booking.Date = selectedBooking.Date;
                 booking.StartTime = selectedBooking.StartTime;
                 booking.EndTime = selectedBooking.EndTime;
@@ -43,14 +49,17 @@ namespace Aerums_API.Repositories {
             return null!;
         }
 
-        public async Task<List<BookingViewModel>> ListAllBookingsAsync () {
-            List<BookingModel> allBookings = await _context.BookingModel!.ToListAsync ();
-            List<BookingViewModel> booked = new List<BookingViewModel> ();
-            BookingViewModel newBooking = new BookingViewModel ();
+        public async Task<List<BookingViewModel>> ListAllBookingsAsync()
+        {
+            List<BookingModel> allBookings = await _context.BookingModel!.ToListAsync();
+            List<BookingViewModel> booked = new List<BookingViewModel>();
+            BookingViewModel newBooking = new BookingViewModel();
 
-            foreach (var booking in allBookings) {
+            foreach (var booking in allBookings)
+            {
 
-                newBooking = new BookingViewModel {
+                newBooking = new BookingViewModel
+                {
                     BookingsId = booking.BookingsId,
                     Date = booking.Date,
                     StartTime = booking.StartTime,
@@ -60,61 +69,98 @@ namespace Aerums_API.Repositories {
                     Note = booking.Note
                 };
 
-                booked.Add (newBooking);
+                booked.Add(newBooking);
             }
 
             return booked;
         }
 
-        public async Task AddBookingAsync(PostBookingsViewModel model){
-            try {
+        public async Task<List<BookingViewModel>> ListAllThisUsersBookingsAsync(string userId)
+        {
+            List<BookingViewModel> myBookings = new List<BookingViewModel>();
+            BookingViewModel foundBookings = new BookingViewModel();
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                var allBookings = _context.BookingModel!.Where(u => u.ApplicationUsers.Id == userId).ToList();
+
+                foreach (var booking in allBookings)
+                {
+                    foundBookings = new BookingViewModel
+                    {
+                        BookingsId = booking.BookingsId
+                    };
+                    myBookings.Add(foundBookings);
+
+                }
+                return myBookings;
+            }
+            return null;
+        }
+
+        public async Task AddBookingAsync(PostBookingsViewModel model)
+        {
+            try
+            {
                 var bookingToAdd = _mapper.Map<BookingModel>(model);
 
-                await _context.BookingModel!.AddAsync(bookingToAdd); 
-            } catch {
+                await _context.BookingModel!.AddAsync(bookingToAdd);
+            }
+            catch
+            {
                 throw new Exception($"Kundum Int leg til an dar: {model}");
             }
         }
 
-        public async Task EditBookingAsync(int bookingsId, PostBookingsViewModel model){
+        public async Task EditBookingAsync(int bookingsId, PostBookingsViewModel model)
+        {
 
-           try { 
-            var booking = await _context.BookingModel!.FindAsync(bookingsId);
-
-            if(booking == null)
+            try
             {
-                throw new Exception($"Kundum Int fin andar gamtfiskn: {bookingsId}");
+                var booking = await _context.BookingModel!.FindAsync(bookingsId);
+
+                if (booking == null)
+                {
+                    throw new Exception($"Kundum Int fin andar gamtfiskn: {bookingsId}");
+                }
+
+                booking.Date = model.Date;
+                booking.StartTime = model.StartTime;
+                booking.EndTime = model.EndTime;
+                booking.Place = booking.Place;
+                booking.Note = booking.Note;
+
+                _context.BookingModel.Update(booking);
             }
-
-            booking.Date = model.Date;
-            booking.StartTime = model.StartTime;
-            booking.EndTime = model.EndTime;
-            booking.Place = booking.Place;
-            booking.Note = booking.Note;
-
-            _context.BookingModel.Update(booking);
-            } catch {
+            catch
+            {
                 throw new Exception($"Kundum Int fin andar gamtfiskn: {bookingsId}");
             }
         }
 
-        public async Task DeleteBooking (int id) {
-            try {
+        public async Task DeleteBooking(int id)
+        {
+            try
+            {
 
-            var selectedBooking = await _context.BookingModel!.FindAsync (id);
+                var selectedBooking = await _context.BookingModel!.FindAsync(id);
 
-            if(selectedBooking is null) {
-                throw new Exception($"Kundum int fin andar: {id}");
+                if (selectedBooking is null)
+                {
+                    throw new Exception($"Kundum int fin andar: {id}");
+                }
+
+                if (selectedBooking is not null)
+                {
+                    _context.BookingModel.Remove(selectedBooking);
+                }
+                _context.BookingModel.Remove(selectedBooking!);
             }
-
-            if(selectedBooking is not null) {
-                _context.BookingModel.Remove(selectedBooking);
-            }
-            _context.BookingModel.Remove (selectedBooking!);
-            } catch {
+            catch
+            {
                 throw new Exception($"Kundum Int fin andar: {id}");
             }
-            
+
         }
 
         public async Task<bool> SaveAllAsync()

@@ -14,7 +14,7 @@ namespace Aerums_API.Models
         public string? Place { get; set; }
         public string? Note { get; set; }
         [ForeignKey("ApplicationUser")]
-        public ApplicationUser? ApplicationUsers { get; set; }
+        public ApplicationUser ApplicationUsers { get; set; }
     }
 
 }
