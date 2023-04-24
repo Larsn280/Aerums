@@ -1,0 +1,22 @@
+.constructionContainer {
+
+}
+
+.constructionDiv {
+    padding: 35px;
+    max-width: 700px;
+    max-height: 700px;
+    background-color: #d9d9d9;
+}
+
+.constructionDiv h1 {
+    margin: 0rem 0rem 1.8rem 0rem;
+}
+
+.constructionImageDiv {
+    width: 100%;
+}
+
+.constructionImageDiv img {
+    max-width: 100%;
+}

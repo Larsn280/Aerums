@@ -3,12 +3,7 @@ import useAuth from "../hooks/useAuth";
 import Logo from "../logo/Logo";
 
 function Home() {
-  const { auth, setAuth } = useAuth();
-
-  const logOut = () => {
-    localStorage.clear();
-    setAuth({});
-  };
+  const { auth } = useAuth();
 
   return (
     <>
