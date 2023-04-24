@@ -88,7 +88,8 @@ namespace Aerums_API.Repositories
                 {
                     foundBookings = new BookingViewModel
                     {
-                        BookingsId = booking.BookingsId
+                        BookingsId = booking.BookingsId,
+                        User = booking.ApplicationUsers.FirstName
                     };
                     myBookings.Add(foundBookings);
 
