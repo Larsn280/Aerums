@@ -1,14 +1,8 @@
 import { NavLink } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
 import Logo from '../logo/Logo'
 
 function Home() {
-  const { setAuth } = useAuth();
 
-  const logOut = () => {
-    localStorage.clear();
-    setAuth({});
-  };
   return (
     <>
     <div className="homeContainer">

@@ -4,14 +4,12 @@
 .navbarLogo {
   width: 300px;
 }
-.navbarTop {
+.navbarContent {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   height: 100%;
-}
-.navbarBottom {
 }
 .nav_Link {
   padding: 10px;
@@ -19,5 +17,11 @@
   color: white;
 }
 .nav_Link:hover {
-  color: green;
+  color: black;
+}
+.active {
+  color: black;
+}
+.logOutBtn {
+  color: red;
 }

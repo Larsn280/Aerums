@@ -7,7 +7,7 @@ function Login() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/calendar";
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
