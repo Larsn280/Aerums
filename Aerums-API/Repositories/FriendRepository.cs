@@ -4,6 +4,7 @@ using Aerums_API.Interfaces;
 using Aerums_API.Models;
 using Aerums_API.ViewModels.FriendViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Aerums_API.Repositories
 {
@@ -67,10 +68,27 @@ namespace Aerums_API.Repositories
                 throw new Exception($"We could not add: {model}");
             }
         }
+        public async Task RemoveFriendAsync(DeleteFriendViewModel model)
+        {
+            try {
+                var response = await _context.FriendModel!.Where(f => f.FriendId == model.FriendId && f.UserId == model.UserId).FirstOrDefaultAsync();
+
+                if(response is null) {
+                    throw new Exception($"Kundum int fin andar filurn min id: {model.FriendId}");
+                }
+                if(response is not null) {
+                    _context.FriendModel!.Remove(response);
+                    await SaveAllAsync();
+                }
+            } catch {
+                throw new Exception($"Kundum int fin andar filurn min id: {model.FriendId}");
+            }
+        }
 
         public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync() > 0;
         }
+
     }
 }
