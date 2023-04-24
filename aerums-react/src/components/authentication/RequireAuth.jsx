@@ -9,7 +9,7 @@ const RequireAuth = () => {
     // Visar detta om användaren är Inloggad...
     <Outlet />
   ) : (
-    <Navigate to="/login" state={{ from: location }} replace />
+    <Navigate to="/" state={{ from: location }} replace />
   );
 };
 

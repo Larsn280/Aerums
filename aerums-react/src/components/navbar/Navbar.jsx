@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
-  const {auth, setAuth } = useAuth();
+  const { auth, setAuth } = useAuth();
 
   const logOut = () => {
     localStorage.clear();
