@@ -10,6 +10,6 @@ namespace Aerums_API.ViewModels.BookingViewModels
         public bool IsConfirmed { get; set; } = false;
         public string? Place { get; set; }
         public string? Note { get; set; }
-        public string User { get; set; }
+        public string UserId { get; set; }
     }
 }
