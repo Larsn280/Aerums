@@ -26,19 +26,19 @@ const Navbar = () => {
         <NavLink className="nav_Link" exact to="/calendar" activeClassName="active">
           Kalender
         </NavLink>
-        <NavLink className="nav_Link" exact to="/home" activeClassName="active">
+        <NavLink className="nav_Link" exact to="/construction" activeClassName="active">
           Vänner
         </NavLink>
-        <NavLink className="nav_Link" to="/home" activeClassName="active">
+        <NavLink className="nav_Link" to="/construction" activeClassName="active">
           Lediga tider
         </NavLink>
-        <NavLink className="nav_Link" to="/home" activeClassName="active">
+        <NavLink className="nav_Link" to="/construction" activeClassName="active">
           Bokningar
         </NavLink>
-        <NavLink className="nav_Link" to="/home" activeClassName="active">
+        <NavLink className="nav_Link" to="/construction" activeClassName="active">
           Profil
         </NavLink>
-        <NavLink className="nav_Link" to="/home" activeClassName="active">
+        <NavLink className="nav_Link" to="/construction" activeClassName="active">
           Aktiviteter
         </NavLink>
         <NavLink className="nav_Link logOutBtn" onClick={logOut} to="/">

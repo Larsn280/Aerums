@@ -18,10 +18,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/construction" element={<UnderConstruction />} />
-
         {/* Protected Routes */}
         <Route element={<RequireAuth />}>
+        <Route path="/construction" element={<UnderConstruction />} />
           <Route path="/calendar" element={<Calendar />} />
         </Route>
       </Route>
