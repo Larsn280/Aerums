@@ -28,9 +28,6 @@ function Home() {
             favoritmänniskor
           </p>
         </div>
-        {auth?.userName ? (
-          <div></div>
-        ) : (
           <div>
             <NavLink to="/login">
               <button className="grayBtn">Logga in</button>
@@ -39,7 +36,6 @@ function Home() {
               <button className="grayBtn">Bli medlem!</button>
             </NavLink>
           </div>
-        )}
       </div>
     </>
   );
