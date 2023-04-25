@@ -7,6 +7,7 @@ namespace Aerums_API.Interfaces
     {
         public Task<List<FriendViewModel>> ListAllFriendsAsync(string userId);
         public Task AddFriendAsync(PostFriendViewModel model);
+        public Task RemoveFriendAsync(DeleteFriendViewModel model);
         public Task<bool> SaveAllAsync();
     }
 }

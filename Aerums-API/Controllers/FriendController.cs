@@ -17,7 +17,7 @@ namespace Aerums_API.Controllers
         public FriendController(IFriendRepository friendRepo) {
             _friendRepo = friendRepo;
         }
-        
+
         [HttpGet ("{userId}")]
         public async Task<ActionResult<List<FriendViewModel>>> ListAllFriends (string userId) {
             return Ok(await _friendRepo.ListAllFriendsAsync (userId));
@@ -39,5 +39,16 @@ namespace Aerums_API.Controllers
                 return StatusCode(500);
             }
         }
+
+        [HttpDelete()]
+        public async Task<ActionResult> RemoveFriend(DeleteFriendViewModel model) {
+            try {
+              await _friendRepo.RemoveFriendAsync(model);
+              return Ok();
+            } catch (Exception ex) {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }
+            
