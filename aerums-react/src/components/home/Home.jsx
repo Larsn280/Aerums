@@ -3,7 +3,8 @@ import useAuth from "../hooks/useAuth";
 import Logo from "../logo/Logo";
 
 function Home() {
-  const { auth } = useAuth();
+  const { auth, freeTimeApi } = useAuth();
+  console.log(freeTimeApi());
 
   return (
     <>
