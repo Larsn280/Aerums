@@ -35,10 +35,10 @@ namespace Aerums_API.Controllers
             }
             return Ok(response);
         }
-        [HttpGet("user/{userId}")]
-        public async Task<ActionResult<List<FreeTimeViewModel>>> ListThisUsersFreetimes(string userId)
+        [HttpGet("user/{userName}")]
+        public async Task<ActionResult<List<FreeTimeViewModel>>> ListThisUsersFreetimes(string userName)
         {
-            var result = await _freeTimeRepo.ListAllThisUsersFreetimeAsync(userId);
+            var result = await _freeTimeRepo.ListAllThisUsersFreetimeAsync(userName);
             if (result == null)
             {
                 return NotFound($"Kunde inte hitta användaren");

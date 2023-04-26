@@ -35,7 +35,7 @@ namespace Aerums_API.Repositories
                     EndTime = freeTime.EndTime,
                     Place = freeTime.Place,
                     Note = freeTime.Note,
-                    UserId = freeTime.ApplicationUsers.Id
+                    UserName = freeTime.ApplicationUsers.UserName
                 };
 
                 freeTimers.Add(newFreeTime);
@@ -57,7 +57,7 @@ namespace Aerums_API.Repositories
                 freeTime.EndTime = selectedFreeTime.EndTime;
                 freeTime.Note = selectedFreeTime.Note;
                 freeTime.Place = selectedFreeTime.Place;
-                freeTime.UserId = selectedFreeTime.ApplicationUsers.Id;
+                freeTime.UserName = selectedFreeTime.ApplicationUsers.UserName;
 
                 return freeTime;
             }
@@ -69,16 +69,21 @@ namespace Aerums_API.Repositories
         {
             List<FreeTimeViewModel> myFreetimes = new List<FreeTimeViewModel>();
             FreeTimeViewModel foundFreetimes = new FreeTimeViewModel();
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByEmailAsync(userId);
             if (user != null)
             {
-                var allFreetimes = _context.FreeTimeModel!.Where(u => u.ApplicationUsers.Id == userId).ToList();
+                var allFreetimes = _context.FreeTimeModel!.Where(u => u.ApplicationUsers.UserName == userId).ToList();
                 foreach (var freeTimes in allFreetimes)
                 {
                     foundFreetimes = new FreeTimeViewModel
                     {
                         FreeTimeId = freeTimes.FreeTimeId,
-                        UserId = freeTimes.ApplicationUsers.Id
+                        Date = freeTimes.Date,
+                        StartTime = freeTimes.StartTime,
+                        EndTime = freeTimes.EndTime,
+                        Place = freeTimes.Place,
+                        Note = freeTimes.Note,
+                        UserName = freeTimes.ApplicationUsers.UserName
                     };
                     myFreetimes.Add(foundFreetimes);
                 }

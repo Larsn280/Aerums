@@ -10,6 +10,6 @@ namespace Aerums_API.ViewModels.FreeTimeViewModels
         public DateTime EndTime { get; set; }
         public string? Place { get; set; }
         public string? Note { get; set; }
-        public string UserId { get; set; }
+        public string UserName { get; set; }
     }
 }
