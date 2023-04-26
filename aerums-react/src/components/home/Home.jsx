@@ -2,6 +2,8 @@ import { NavLink } from "react-router-dom";
 import Logo from '../logo/Logo'
 
 function Home() {
+  const { auth, freeTimeApi } = useAuth();
+  console.log(freeTimeApi());
 
   return (
     <>
