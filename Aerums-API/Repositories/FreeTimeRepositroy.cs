@@ -65,14 +65,14 @@ namespace Aerums_API.Repositories
             return null!;
         }
 
-        public async Task<List<FreeTimeViewModel>> ListAllThisUsersFreetimeAsync(string userId)
+        public async Task<List<FreeTimeViewModel>> ListAllThisUsersFreetimeAsync(string userName)
         {
             List<FreeTimeViewModel> myFreetimes = new List<FreeTimeViewModel>();
             FreeTimeViewModel foundFreetimes = new FreeTimeViewModel();
-            var user = await _userManager.FindByEmailAsync(userId);
+            var user = await _userManager.FindByEmailAsync(userName);
             if (user != null)
             {
-                var allFreetimes = _context.FreeTimeModel!.Where(u => u.ApplicationUsers.UserName == userId).ToList();
+                var allFreetimes = _context.FreeTimeModel!.Where(u => u.ApplicationUsers.UserName == userName).ToList();
                 foreach (var freeTimes in allFreetimes)
                 {
                     foundFreetimes = new FreeTimeViewModel
