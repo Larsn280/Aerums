@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import Logo from '../logo/Logo'
+import useAuth from "../hooks/useAuth";
 
 function Home() {
-  const { auth, freeTimeApi } = useAuth();
-  console.log(freeTimeApi());
+  const { auth } = useAuth();
 
   return (
     <>

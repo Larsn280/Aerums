@@ -11,6 +11,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   height: 100%;
+  margin-top: 50px;
 }
 .nav_Link {
   padding: 10px;

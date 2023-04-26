@@ -55,16 +55,19 @@ namespace Aerums_API.Services
                     Date = DateTime.Now.AddDays(+5),
                     StartTime = DateTime.Now.AddDays(+5),
                     EndTime = DateTime.Now.AddDays(+5),
+                    Place = "På stan"
+                },
+                new FreeTimeModel(){
+                    Date = DateTime.Now.AddDays(+3),
+                    StartTime = DateTime.Now.AddDays(+3),
+                    EndTime = DateTime.Now.AddDays(+3),
                 },
                 new FreeTimeModel(){
                     Date = DateTime.Now.AddDays(+5),
                     StartTime = DateTime.Now.AddDays(+5),
                     EndTime = DateTime.Now.AddDays(+5),
-                },
-                new FreeTimeModel(){
-                    Date = DateTime.Now.AddDays(+5),
-                    StartTime = DateTime.Now.AddDays(+5),
-                    EndTime = DateTime.Now.AddDays(+5),
+                    Note = "Ta med badkläder",
+                    Place = "Badhuset"
                 },
                 new FreeTimeModel(){
                     Date = DateTime.Now.AddDays(+5),
@@ -155,7 +158,7 @@ namespace Aerums_API.Services
         public async Task CreateAndSeedIfNotExist()
         {
             bool createdDatabase = await _ctx.Database.EnsureCreatedAsync();
-            if (createdDatabase) await Seed();
+            if (!createdDatabase) await Seed();
         }
     }
 }

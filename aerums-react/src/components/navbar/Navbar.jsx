@@ -6,6 +6,7 @@ import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
   const { auth, setAuth } = useAuth();
+  const usersName = auth.userName;
 
   const logOut = () => {
     localStorage.clear();
@@ -21,6 +22,7 @@ const Navbar = () => {
       </div>
       <div className="navbarWelcome">
         <h1>Välkommen</h1>
+        <h4>{usersName}</h4>
       </div>
       <div className="navbarContent">
         <NavLink className="nav_Link" exact to="/calendar" activeClassName="active">
@@ -29,7 +31,7 @@ const Navbar = () => {
         <NavLink className="nav_Link" exact to="/construction" activeClassName="active">
           Vänner
         </NavLink>
-        <NavLink className="nav_Link" to="/construction" activeClassName="active">
+        <NavLink className="nav_Link" to="/freetime" activeClassName="active">
           Lediga tider
         </NavLink>
         <NavLink className="nav_Link" to="/construction" activeClassName="active">

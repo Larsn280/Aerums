@@ -1,6 +1,7 @@
-export const freeTimeApi = async () => {
+export const freeTimeApi = async (userName) => {
+  
   try {
-    const response = await fetch(`${process.env.REACT_APP_BASEURL}/freetime`, {
+    const response = await fetch(`${process.env.REACT_APP_BASEURL}/freetime/user/${userName}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
