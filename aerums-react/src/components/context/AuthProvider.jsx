@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import * as api from "../../api/api";
+import * as api from "../../api/freeTimeApi";
 
 const AuthContext = createContext({});
 
