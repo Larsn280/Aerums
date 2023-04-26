@@ -34,9 +34,9 @@ namespace Aerums_API.Controllers
 
         }
         [HttpGet("user/{userId}")]
-        public async Task<ActionResult<List<BookingViewModel>>> ListThisUsersBookings(string userId)
+        public async Task<ActionResult<List<BookingViewModel>>> ListThisUsersBookings(string userName)
         {
-            var result = await _bookingRepo.ListAllThisUsersBookingsAsync(userId);
+            var result = await _bookingRepo.ListAllThisUsersBookingsAsync(userName);
             if (result == null)
             {
                 return NotFound($"Kunde inte hitta användaren");

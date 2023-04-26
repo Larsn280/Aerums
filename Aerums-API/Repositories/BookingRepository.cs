@@ -75,21 +75,26 @@ namespace Aerums_API.Repositories
             return booked;
         }
 
-        public async Task<List<BookingViewModel>> ListAllThisUsersBookingsAsync(string userId)
+        public async Task<List<BookingViewModel>> ListAllThisUsersBookingsAsync(string userName)
         {
             List<BookingViewModel> myBookings = new List<BookingViewModel>();
             BookingViewModel foundBookings = new BookingViewModel();
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByEmailAsync(userName);
             if (user != null)
             {
-                var allBookings = _context.BookingModel!.Where(u => u.ApplicationUsers.Id == userId).ToList();
+                var allBookings = _context.BookingModel!.Where(u => u.ApplicationUsers.Id == userName).ToList();
 
                 foreach (var booking in allBookings)
                 {
                     foundBookings = new BookingViewModel
                     {
                         BookingsId = booking.BookingsId,
-                        UserId = booking.ApplicationUsers.Id
+                        Date = booking.Date,
+                        StartTime = booking.StartTime,
+                        EndTime = booking.EndTime,
+                        Note = booking.Note,
+                        Place = booking.Place,
+                        UserName = booking.ApplicationUsers.UserName
                     };
                     myBookings.Add(foundBookings);
 
