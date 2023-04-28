@@ -7,6 +7,9 @@ function Home() {
 
   return (
     <>
+    {auth?.userName ? (
+          <div></div>
+        ) : (
       <div className="homeContainer">
         <h1 className="homePage-title">Välkommen till</h1>
         <div className="logoDiv">
@@ -30,9 +33,7 @@ function Home() {
             favoritmänniskor
           </p>
         </div>
-        {auth?.userName ? (
-          <div></div>
-        ) : (
+         
           <div>
             <NavLink to="/login">
               <button className="grayBtn">Logga in</button>
@@ -40,8 +41,8 @@ function Home() {
             <NavLink to="/register">
               <button className="grayBtn">Bli medlem!</button>
             </NavLink>
-          </div>)}
-      </div>
+          </div>
+      </div>)}
     </>
   );
 }
