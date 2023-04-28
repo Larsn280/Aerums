@@ -35,6 +35,16 @@ namespace Aerums_API.Controllers
             }
             return Ok(response);
         }
+        [HttpGet("user/{userName}")]
+        public async Task<ActionResult<List<FreeTimeViewModel>>> ListThisUsersFreetimes(string userName)
+        {
+            var result = await _freeTimeRepo.ListAllThisUsersFreetimeAsync(userName);
+            if (result == null)
+            {
+                return NotFound($"Kunde inte hitta användaren");
+            }
+            return Ok(result);
+        }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteFreeTime(int id)

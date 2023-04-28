@@ -1,15 +1,17 @@
 import { NavLink } from "react-router-dom";
+import Logo from '../logo/Logo'
 import useAuth from "../hooks/useAuth";
-import Logo from "../logo/Logo";
 
 function Home() {
-  const { auth, freeTimeApi } = useAuth();
-  console.log(freeTimeApi());
+  const { auth } = useAuth();
 
   return (
     <>
+    {auth?.userName ? (
+          <div></div>
+        ) : (
       <div className="homeContainer">
-        <h1 className="page-title">Välkommen till</h1>
+        <h1 className="homePage-title">Välkommen till</h1>
         <div className="logoDiv">
           <Logo />
         </div>
@@ -31,9 +33,7 @@ function Home() {
             favoritmänniskor
           </p>
         </div>
-        {auth?.userName ? (
-          <div></div>
-        ) : (
+         
           <div>
             <NavLink to="/login">
               <button className="grayBtn">Logga in</button>
@@ -42,8 +42,7 @@ function Home() {
               <button className="grayBtn">Bli medlem!</button>
             </NavLink>
           </div>
-        )}
-      </div>
+      </div>)}
     </>
   );
 }

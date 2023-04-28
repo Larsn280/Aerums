@@ -5,6 +5,8 @@ function Register() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const onHandleEmailTextChanged = (e) => {
     setEmail(e.target.value);
@@ -13,6 +15,14 @@ function Register() {
   const onHandlePasswordTextChanged = (e) => {
     setPassword(e.target.value);
   };
+
+  const onHandleFirsNameTextChanged = (e) => {
+    setFirstName(e.target.value);
+  }
+
+  const onHandleLastNameTextChanged = (e) => {
+    setLastName(e.target.value);
+  }
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -23,6 +33,8 @@ function Register() {
     const user = {
       email: email,
       password: password,
+      firstName: firstName,
+      lastName: lastName
     };
 
     const response = await fetch(url, {
@@ -70,6 +82,26 @@ function Register() {
                 id="password"
                 name="password"
               />
+            </div>
+            <div className="form-control">
+                <lable htmlFor="FirstName">Förnamn</lable>
+                <input
+                onChange={onHandleFirsNameTextChanged}
+                value={firstName}
+                type="text"
+                id="firstName"
+                name="firstName"
+                />
+            </div>
+            <div className="form-control">
+                <lable htmlFor="LastName">Efternamn</lable>
+                <input
+                onChange={onHandleLastNameTextChanged}
+                value={lastName}
+                type="text"
+                id="lastName"
+                name="lastName"
+                />
             </div>
             <div className="buttons">
               <button type="submit" className="greenBtn">

@@ -1,24 +1,45 @@
 .navbarContainer {
   float: left;
   position: fixed;
+  width: 300px;
+  text-align: start;
+  background-color: #5a5656;
+  margin-top: 40px;
+}
+.hamburger {
+  float: left;
+  margin-bottom: 100px;
+}
+.navbarContainer-in {
+  display: none;
 }
 .navbarLogo {
   width: 300px;
 }
-.navbarTop {
+.navbarLogo-in {
+  display: none;
+}
+.navbarContent {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+
   height: 100%;
-}
-.navbarBottom {
+  margin-top: 50px;
 }
 .nav_Link {
   padding: 10px;
   text-decoration: none;
   color: white;
+  text-align: start;
+  margin-right: 0;
+  margin-left: 0;
 }
 .nav_Link:hover {
-  color: green;
+  color: black;
+}
+.active {
+  color: black;
+}
+.logOutBtn {
+  color: red;
 }
