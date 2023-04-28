@@ -8,7 +8,7 @@ function Home() {
   return (
     <>
       <div className="homeContainer">
-        <h1 className="page-title">Välkommen till</h1>
+        <h1 className="homePage-title">Välkommen till</h1>
         <div className="logoDiv">
           <Logo />
         </div>
