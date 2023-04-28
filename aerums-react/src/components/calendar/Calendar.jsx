@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './Calendar.css';
-import useAuth from "../hooks/useAuth"
+// import useAuth from "../hooks/useAuth"
 
 function Calendar() {
   const [date, setDate] = useState(new Date());
-  const {auth, freeTimeApi} = useAuth();
+  // const {auth, freeTimeApi} = useAuth();
  
-  freeTimeApi(auth.userName)
-  .then((data) => {
-    const freetimeData = data || [];
-    console.log(freetimeData)
-  })
-  .catch((error) => {
-    console.error(error)
-  });
+  // freeTimeApi(auth.userName)
+  // .then((data) => {
+  //   const freetimeData = data || [];
+  // })
+  // .catch((error) => {
+  //   console.error(error)
+  // });
 
   const handlePrevMonth = () => {
     const newDate = new Date(date);
