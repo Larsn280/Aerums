@@ -28,7 +28,7 @@ function Freetime() {
       .catch((error) => {
         console.error(error);
       });
-  }, [auth.userName]);
+  }, [auth.userName, freeTimeApi]);
 
   const editFreetime = () => {
     console.log('edit')
@@ -40,7 +40,7 @@ function Freetime() {
 
   return (
     <div className='freetimeContainer'>
-        <h1 className='title'>Lediga Tider</h1>
+        <h1 className='page-title'>Lediga Tider</h1>
     <table>
       <thead>
         <tr>

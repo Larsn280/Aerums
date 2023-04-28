@@ -87,7 +87,7 @@ function Calendar() {
   return (
     <>
     <div className='calendarContainer'>
-      <h1 className='title'>Kalender</h1>
+      <h1 className='page-title'>Kalender</h1>
     <div className="calendar">
       <div className="header">
         <button onClick={handlePrevMonth}>&lt;</button>
