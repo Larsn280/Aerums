@@ -45,7 +45,7 @@ const Navbar = () => {
         <NavLink className="nav_Link" to="/construction" activeClassName="active">
         <i className="fa fa-tree"></i> Aktiviteter
         </NavLink>
-        <NavLink className="nav_Link logOutBtn" onClick={logOut} to="/">
+        <NavLink className="nav_Link" onClick={logOut} to="/">
         <i className="fa fa-close"></i> Logga ut
         </NavLink>
       </div>
