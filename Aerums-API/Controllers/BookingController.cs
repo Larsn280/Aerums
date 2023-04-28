@@ -33,7 +33,7 @@ namespace Aerums_API.Controllers
             return Ok(response);
 
         }
-        [HttpGet("user/{userId}")]
+        [HttpGet("user/{userName}")]
         public async Task<ActionResult<List<BookingViewModel>>> ListThisUsersBookings(string userName)
         {
             var result = await _bookingRepo.ListAllThisUsersBookingsAsync(userName);

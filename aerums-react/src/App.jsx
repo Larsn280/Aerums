@@ -9,6 +9,7 @@ import Calendar from "./components/calendar/Calendar";
 import Freetime from "./components/freetime/Freetime";
 import "./utilities.css";
 import "./App.css";
+import Booking from "./components/booking/Booking";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/construction" element={<UnderConstruction />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/freetime" element={<Freetime />} />
+          <Route path="/booking" element={<Booking />} />
         </Route>
       </Route>
     </Routes>

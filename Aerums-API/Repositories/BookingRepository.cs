@@ -82,7 +82,7 @@ namespace Aerums_API.Repositories
             var user = await _userManager.FindByEmailAsync(userName);
             if (user != null)
             {
-                var allBookings = _context.BookingModel!.Where(u => u.ApplicationUsers.Id == userName).ToList();
+                var allBookings = _context.BookingModel!.Where(u => u.ApplicationUsers.UserName == userName).ToList();
 
                 foreach (var booking in allBookings)
                 {

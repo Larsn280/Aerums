@@ -36,7 +36,7 @@ const Navbar = () => {
         <NavLink className="nav_Link" to="/freetime" activeClassName="active">
         <i className="fa fa-smile-o"></i> Lediga tider
         </NavLink>
-        <NavLink className="nav_Link" to="/construction" activeClassName="active">
+        <NavLink className="nav_Link" to="/booking" activeClassName="active">
         <i className="fa fa-book"></i> Bokningar
         </NavLink>
         <NavLink className="nav_Link" to="/construction" activeClassName="active">
