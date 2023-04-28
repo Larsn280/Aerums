@@ -26,7 +26,7 @@ function Login() {
     e.preventDefault();
 
     const url = `${process.env.REACT_APP_BASEURL}/auth/login`;
-    console.log(url);
+    // console.log(url);
 
     const user = {
       userName: userName,
@@ -41,12 +41,12 @@ function Login() {
       body: JSON.stringify(user),
     });
 
-    console.log(response);
+    // console.log(response);
 
     if (response.status >= 200 && response.status <= 299) {
       const result = await response.json();
       localStorage.setItem("token", JSON.stringify(result.token));
-      console.log(JSON.stringify(result));
+      // console.log(JSON.stringify(result));
 
       const accessToken = result.token;
 
@@ -85,6 +85,7 @@ function Login() {
                 type="password"
                 id="password"
                 name="password"
+                autoComplete="off"
               />
             </div>
             <div className="buttons">
