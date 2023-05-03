@@ -1,0 +1,13 @@
+.profileContainer {
+    width: 800px;
+}
+
+.profileContainer h1 {
+    text-align: center;
+    margin: 0rem 0rem 1.5rem 0rem;
+}
+
+.profileContainer p {
+    text-align: center;
+    margin: 0rem 0rem 1.5rem 0rem;
+}

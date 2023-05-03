@@ -1,0 +1,13 @@
+.activitysContainer {
+    width: 800px;
+}
+
+.activitysContainer h1 {
+    text-align: center;
+    margin: 0rem 0rem 1.5rem 0rem;
+}
+
+.activitysContainer p {
+    text-align: center;
+    margin: 0rem 0rem 1.5rem 0rem;
+}

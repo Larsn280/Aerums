@@ -1,0 +1,13 @@
+.friendsContainer {
+    width: 800px;
+}
+
+.friendsContainer h1 {
+    text-align: center;
+    margin: 0rem 0rem 1.5rem 0rem;
+}
+
+.friendsContainer p {
+    text-align: center;
+    margin: 0rem 0rem 1.5rem 0rem;
+}
