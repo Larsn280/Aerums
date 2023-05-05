@@ -28,7 +28,6 @@ function Register() {
     e.preventDefault();
 
     const url = `${process.env.REACT_APP_BASEURL}/auth/register`;
-    console.log(url);
 
     const user = {
       email: email,
@@ -44,8 +43,6 @@ function Register() {
       },
       body: JSON.stringify(user),
     });
-
-    console.log(response);
 
     if (response.status >= 200 && response.status <= 299) {
       const result = await response.json();

@@ -22,7 +22,6 @@
 .navbarContent {
   display: flex;
   flex-direction: column;
-
   height: 100%;
   margin-top: 50px;
 }
@@ -40,6 +39,6 @@
 .active {
   color: black;
 }
-.logOutBtn {
-  color: red;
-}
+/* .logOutBtn {
+  color: darkred;
+} */

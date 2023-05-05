@@ -45,7 +45,7 @@ const Navbar = () => {
               </NavLink>
               <NavLink
                 className="nav_Link"
-                to="/friends"
+                to="/construction"
                 activeClassName="active"
               >
                 <i className="fa fa-group"></i> Vänner
@@ -66,19 +66,19 @@ const Navbar = () => {
               </NavLink>
               <NavLink
                 className="nav_Link"
-                to="/profile"
+                to="/construction"
                 activeClassName="active"
               >
                 <i className="fa fa-user-circle-o"></i> Profil
               </NavLink>
               <NavLink
                 className="nav_Link"
-                to="/activitys"
+                to="/construction"
                 activeClassName="active"
               >
                 <i className="fa fa-tree"></i> Aktiviteter
               </NavLink>
-              <NavLink className="nav_Link logOutBtn" onClick={logOut} to="/">
+              <NavLink className="nav_Link" onClick={logOut} to="/">
                 <i className="fa fa-close"></i> Logga ut
               </NavLink>
             </div>

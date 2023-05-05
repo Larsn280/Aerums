@@ -13,12 +13,10 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const onHandleUserNameTextChanged = (e) => {
-    // console.log(e.target.name);
     setUserName(e.target.value);
   };
 
   const onHandlePasswordTextChanged = (e) => {
-    // console.log(e.target.name);
     setPassword(e.target.value);
   };
 
@@ -26,7 +24,6 @@ function Login() {
     e.preventDefault();
 
     const url = `${process.env.REACT_APP_BASEURL}/auth/login`;
-    // console.log(url);
 
     const user = {
       userName: userName,
@@ -41,16 +38,13 @@ function Login() {
       body: JSON.stringify(user),
     });
 
-    // console.log(response);
-
     if (response.status >= 200 && response.status <= 299) {
       const result = await response.json();
       localStorage.setItem("token", JSON.stringify(result.token));
-      // console.log(JSON.stringify(result));
 
       const accessToken = result.token;
 
-      setAuth({ userName, password, accessToken });
+      setAuth({ userName });
       setUserName("");
       setPassword("");
       navigate(from, { replace: true });
