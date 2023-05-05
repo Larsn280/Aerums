@@ -22,7 +22,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         {/* Protected Routes */}
         <Route element={<RequireAuth />}>
-        <Route path="/construction" element={<UnderConstruction />} />
+          <Route path="/construction" element={<UnderConstruction />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/freetime" element={<Freetime />} />
           <Route path="/booking" element={<Booking />} />
