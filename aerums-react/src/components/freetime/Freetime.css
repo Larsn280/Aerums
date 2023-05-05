@@ -1,3 +1,16 @@
 .freetimeContainer {
   width: 800px;
 }
+
+.addMyFreeTimeDiv {
+  display: flex;
+  align-items: center;
+
+  margin: 0rem 0rem 2rem 0rem;
+}
+
+.addMyFreeTimeDiv button {
+  transition: 1s;
+}
+
+

@@ -7,6 +7,7 @@ import Layout from "./components/layOut/Layout";
 import UnderConstruction from "./components/underConstruction/UnderConstruction";
 import Calendar from "./components/calendar/Calendar";
 import Freetime from "./components/freetime/Freetime";
+import AddFreeTime from "./components/freetime/AddFreeTime";
 import Friends from "./components/friends/Friends";
 import Profile from "./components/profile/Profile";
 import Activitys from "./components/activitys/Activitys";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/construction" element={<UnderConstruction />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/freetime" element={<Freetime />} />
+          <Route path="/addFreeTime" element={<AddFreeTime />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/profile" element={<Profile />} />
