@@ -37,7 +37,6 @@ function AddFreeTime() {
     };
 
     addFreeTimeApi(freeTime);
-    console.log(addFreeTimeApi);
   };
 
   return (
