@@ -1,18 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import "./Freetime.css";
 
 function AddFreeTime() {
-  const [date, setDate] = useState("");
+  let date;
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [note, setNote] = useState("");
   const [place, setPlace] = useState("");
+  const [days, setDays] = useState([]);
+  const [years, setYears] = useState([]);
+  const [selectedDay, setSelectedDay] = useState(0);
+  const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedYear, setSelectedYear] = useState(2023);
   const { addFreeTimeApi } = useAuth();
 
-  const handleChangeDate = (e) => {
-    setDate(e.target.value);
-  };
   const handleChangeStartTime = (e) => {
     setStartTime(e.target.value);
   };
@@ -27,6 +29,7 @@ function AddFreeTime() {
   };
 
   const handleSaveFreeTime = (e) => {
+    date = `${selectedDay}/${selectedMonth}/${selectedYear}`;
     e.preventDefault();
     const freeTime = {
       date,
@@ -39,8 +42,59 @@ function AddFreeTime() {
     addFreeTimeApi(freeTime);
   };
 
+  const months = [
+    "Januari",
+    "Februari",
+    "Mars",
+    "April",
+    "Maj",
+    "Juni",
+    "Juli",
+    "Augusti",
+    "September",
+    "Oktober",
+    "November",
+    "December",
+  ];
+
+  useEffect(() => {
+    if (selectedMonth && selectedYear) {
+      const monthIndex = months.indexOf(selectedMonth);
+      const daysInMonth = getDaysInMonth(monthIndex + 1, selectedYear);
+      setDays(Array.from({ length: daysInMonth }, (_, i) => i + 1));
+    }
+  }, [selectedMonth, selectedYear]);
+
+  useEffect(() => {
+    const currentYear = new Date().getFullYear();
+    const yearRange = Array.from(
+      { length: 10 },
+      (_, index) => currentYear + index
+    );
+    setYears(yearRange);
+  }, []);
+
+  const handleDayChange = (e) => {
+    setSelectedDay(e.target.value);
+  };
+  const handleMonthChange = (e) => {
+    setSelectedMonth(e.target.value);
+  };
+  const handleYearChange = (e) => {
+    setSelectedYear(parseInt(e.target.value));
+  };
+
+  const getDaysInMonth = (month, year) => {
+    return new Date(year, month, 0).getDate();
+  };
+
+  const consolelog = () => {
+    console.log(days);
+  };
+
   return (
     <>
+      <button onClick={consolelog}></button>
       <h1 className="page-title">Lägg till ledig tid</h1>
       <section className="form-container">
         <h4>Ledig Tid</h4>
@@ -48,17 +102,56 @@ function AddFreeTime() {
           <form className="form" onSubmit={handleSaveFreeTime}>
             <div className="form-control">
               <label className="date" htmlFor="date">
-                Datum
+                Datum:
               </label>
-              <input
-                onChange={handleChangeDate}
-                value={date}
-                type="text"
-                id="date"
-                name="date"
-                autoComplete="off"
-              />
+              <div name="date" id="date">
+                <select
+                  name="day"
+                  id="day"
+                  placeholder="Dag"
+                  value={selectedDay}
+                  onChange={handleDayChange}
+                >
+                  <option value=""></option>
+                  {days.map((day, index) => (
+                    <option key={index} value={day}>
+                      {day}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  name="month"
+                  id="month"
+                  placeholder="Månad"
+                  value={selectedMonth}
+                  onChange={handleMonthChange}
+                >
+                  <option value=""></option>
+                  {months.map((month, index) => (
+                    <option key={index} value={month}>
+                      {month}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  name="year"
+                  id="year"
+                  placeholder="År"
+                  value={selectedYear}
+                  onChange={handleYearChange}
+                >
+                  <option value=""></option>
+                  {years.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
+
             <div className="form-control">
               <label className="startTime" htmlFor="startTime">
                 Start Tid

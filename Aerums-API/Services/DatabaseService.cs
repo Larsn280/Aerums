@@ -17,98 +17,98 @@ namespace Aerums_API.Services
 
         public async Task Seed()
         {
-            var testssonsBookingList = new List<BookingModel>{
-                new BookingModel(){
-                    Date = DateTime.Now.AddDays(+5),
-                    StartTime = DateTime.Now.AddDays(+5),
-                    EndTime = DateTime.Now.AddDays(+5),
-                    Place = "Hemma hos Test Testsson",
-                    Note = "Ta med kaffe o Bulle",
-                },
-                new BookingModel(){
-                    Date = DateTime.Now.AddDays(+10),
-                    StartTime = DateTime.Now.AddDays(+10),
-                    EndTime = DateTime.Now.AddDays(+10),
-                    Place = "Lekplatsen",
-                    Note = "Ta med regnkläder",
-                },
-                new BookingModel(){
-                    Date = DateTime.Now.AddDays(+3),
-                    StartTime = DateTime.Now.AddDays(+3),
-                    EndTime = DateTime.Now.AddDays(+3),
-                    Place = "Café Björnen"
-                },
+            // var testssonsBookingList = new List<BookingModel>{
+            //     new BookingModel(){
+            //         Date = DateTime.Now.AddDays(+5),
+            //         StartTime = DateTime.Now.AddDays(+5),
+            //         EndTime = DateTime.Now.AddDays(+5),
+            //         Place = "Hemma hos Test Testsson",
+            //         Note = "Ta med kaffe o Bulle",
+            //     },
+            //     new BookingModel(){
+            //         Date = DateTime.Now.AddDays(+10),
+            //         StartTime = DateTime.Now.AddDays(+10),
+            //         EndTime = DateTime.Now.AddDays(+10),
+            //         Place = "Lekplatsen",
+            //         Note = "Ta med regnkläder",
+            //     },
+            //     new BookingModel(){
+            //         Date = DateTime.Now.AddDays(+3),
+            //         StartTime = DateTime.Now.AddDays(+3),
+            //         EndTime = DateTime.Now.AddDays(+3),
+            //         Place = "Café Björnen"
+            //     },
 
-            };
-            var björkssonsBookingList = new List<BookingModel>{
-                new BookingModel(){
-                    Date = DateTime.Now.AddDays(+15),
-                    StartTime = DateTime.Now.AddDays(+15),
-                    EndTime = DateTime.Now.AddDays(+15),
-                    Place = "Stranden"
-                }};
-            await _ctx.AddRangeAsync(testssonsBookingList);
-            await _ctx.AddRangeAsync(björkssonsBookingList);
+            // };
+            // var björkssonsBookingList = new List<BookingModel>{
+            //     new BookingModel(){
+            //         Date = DateTime.Now.AddDays(+15),
+            //         StartTime = DateTime.Now.AddDays(+15),
+            //         EndTime = DateTime.Now.AddDays(+15),
+            //         Place = "Stranden"
+            //     }};
+            // await _ctx.AddRangeAsync(testssonsBookingList);
+            // await _ctx.AddRangeAsync(björkssonsBookingList);
 
-            var testssonsFreetimeList = new List<FreeTimeModel>{
-                new FreeTimeModel(){
-                    Date = DateTime.Now.AddDays(+5),
-                    StartTime = DateTime.Now.AddDays(+5),
-                    EndTime = DateTime.Now.AddDays(+5),
-                    Place = "På stan"
-                },
-                new FreeTimeModel(){
-                    Date = DateTime.Now.AddDays(+3),
-                    StartTime = DateTime.Now.AddDays(+3),
-                    EndTime = DateTime.Now.AddDays(+3),
-                },
-                new FreeTimeModel(){
-                    Date = DateTime.Now.AddDays(+5),
-                    StartTime = DateTime.Now.AddDays(+5),
-                    EndTime = DateTime.Now.AddDays(+5),
-                    Note = "Ta med badkläder",
-                    Place = "Badhuset"
-                },
-                new FreeTimeModel(){
-                    Date = DateTime.Now.AddDays(+5),
-                    StartTime = DateTime.Now.AddDays(+5),
-                    EndTime = DateTime.Now.AddDays(+5),
-                },
-                new FreeTimeModel(){
-                    Date = DateTime.Now.AddDays(+5),
-                    StartTime = DateTime.Now.AddDays(+5),
-                    EndTime = DateTime.Now.AddDays(+5),
-                }
-            };
-            var björkssonsFreetimeList = new List<FreeTimeModel>{
-                new FreeTimeModel(){
-                    Date = DateTime.Now.AddDays(+3),
-                    StartTime = DateTime.Now.AddDays(+3),
-                    EndTime = DateTime.Now.AddDays(+3),
-                },
-                new FreeTimeModel(){
-                    Date = DateTime.Now.AddDays(+5),
-                    StartTime = DateTime.Now.AddDays(+5),
-                    EndTime = DateTime.Now.AddDays(+5),
-                },
-                new FreeTimeModel(){
-                    Date = DateTime.Now.AddDays(+8),
-                    StartTime = DateTime.Now.AddDays(+8),
-                    EndTime = DateTime.Now.AddDays(+8),
-                },
-                new FreeTimeModel(){
-                    Date = DateTime.Now.AddDays(+15),
-                    StartTime = DateTime.Now.AddDays(+15),
-                    EndTime = DateTime.Now.AddDays(+15),
-                },
-                new FreeTimeModel(){
-                    Date = DateTime.Now.AddDays(+5),
-                    StartTime = DateTime.Now.AddDays(+5),
-                    EndTime = DateTime.Now.AddDays(+5),
-                }
-            };
-            await _ctx.AddRangeAsync(testssonsFreetimeList);
-            await _ctx.AddRangeAsync(björkssonsFreetimeList);
+            // var testssonsFreetimeList = new List<FreeTimeModel>{
+            //     new FreeTimeModel(){
+            //         Date = DateTime.Now.AddDays(+5),
+            //         StartTime = DateTime.Now.AddDays(+5),
+            //         EndTime = DateTime.Now.AddDays(+5),
+            //         Place = "På stan"
+            //     },
+            //     new FreeTimeModel(){
+            //         Date = DateTime.Now.AddDays(+3),
+            //         StartTime = DateTime.Now.AddDays(+3),
+            //         EndTime = DateTime.Now.AddDays(+3),
+            //     },
+            //     new FreeTimeModel(){
+            //         Date = DateTime.Now.AddDays(+5),
+            //         StartTime = DateTime.Now.AddDays(+5),
+            //         EndTime = DateTime.Now.AddDays(+5),
+            //         Note = "Ta med badkläder",
+            //         Place = "Badhuset"
+            //     },
+            //     new FreeTimeModel(){
+            //         Date = DateTime.Now.AddDays(+5),
+            //         StartTime = DateTime.Now.AddDays(+5),
+            //         EndTime = DateTime.Now.AddDays(+5),
+            //     },
+            //     new FreeTimeModel(){
+            //         Date = DateTime.Now.AddDays(+5),
+            //         StartTime = DateTime.Now.AddDays(+5),
+            //         EndTime = DateTime.Now.AddDays(+5),
+            //     }
+            // };
+            // var björkssonsFreetimeList = new List<FreeTimeModel>{
+            //     new FreeTimeModel(){
+            //         Date = DateTime.Now.AddDays(+3),
+            //         StartTime = DateTime.Now.AddDays(+3),
+            //         EndTime = DateTime.Now.AddDays(+3),
+            //     },
+            //     new FreeTimeModel(){
+            //         Date = DateTime.Now.AddDays(+5),
+            //         StartTime = DateTime.Now.AddDays(+5),
+            //         EndTime = DateTime.Now.AddDays(+5),
+            //     },
+            //     new FreeTimeModel(){
+            //         Date = DateTime.Now.AddDays(+8),
+            //         StartTime = DateTime.Now.AddDays(+8),
+            //         EndTime = DateTime.Now.AddDays(+8),
+            //     },
+            //     new FreeTimeModel(){
+            //         Date = DateTime.Now.AddDays(+15),
+            //         StartTime = DateTime.Now.AddDays(+15),
+            //         EndTime = DateTime.Now.AddDays(+15),
+            //     },
+            //     new FreeTimeModel(){
+            //         Date = DateTime.Now.AddDays(+5),
+            //         StartTime = DateTime.Now.AddDays(+5),
+            //         EndTime = DateTime.Now.AddDays(+5),
+            //     }
+            // };
+            // await _ctx.AddRangeAsync(testssonsFreetimeList);
+            // await _ctx.AddRangeAsync(björkssonsFreetimeList);
 
             var testUser = new ApplicationUser()
             {
@@ -116,8 +116,8 @@ namespace Aerums_API.Services
                 Email = "test@mail.com",
                 FirstName = "Test",
                 LastName = "Testsson",
-                FreeTimeModel = testssonsFreetimeList,
-                BookingModel = testssonsBookingList
+                // FreeTimeModel = testssonsFreetimeList,
+                // BookingModel = testssonsBookingList
             };
             var test2User = new ApplicationUser()
             {
@@ -125,8 +125,8 @@ namespace Aerums_API.Services
                 Email = "bjork@mail.com",
                 FirstName = "Berit",
                 LastName = "Björksson",
-                FreeTimeModel = björkssonsFreetimeList,
-                BookingModel = björkssonsBookingList
+                // FreeTimeModel = björkssonsFreetimeList,
+                // BookingModel = björkssonsBookingList
             };
             await _userManager.CreateAsync(testUser, "Passw0rd!");
             await _userManager.CreateAsync(test2User, "Passw0rd!");
