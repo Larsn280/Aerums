@@ -3,7 +3,6 @@ import useAuth from "../hooks/useAuth";
 import "./Freetime.css";
 
 function AddFreeTime() {
-  let date;
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [note, setNote] = useState("");
@@ -11,8 +10,10 @@ function AddFreeTime() {
   const [days, setDays] = useState([]);
   const [years, setYears] = useState([]);
   const [selectedDay, setSelectedDay] = useState(0);
-  const [selectedMonth, setSelectedMonth] = useState("");
-  const [selectedYear, setSelectedYear] = useState(2023);
+  const [selectedMonth, setSelectedMonth] = useState(0);
+  const [selectedYear, setSelectedYear] = useState(0);
+  const [selectedHour, setSelectedHour] = useState("");
+  const [selectedMinute, setSelectedMinute] = useState("");
   const { addFreeTimeApi } = useAuth();
 
   const handleChangeStartTime = (e) => {
@@ -29,7 +30,7 @@ function AddFreeTime() {
   };
 
   const handleSaveFreeTime = (e) => {
-    date = `${selectedDay}/${selectedMonth}/${selectedYear}`;
+    const date = `${selectedDay}/${selectedMonth}/${selectedYear}`;
     e.preventDefault();
     const freeTime = {
       date,
@@ -83,6 +84,13 @@ function AddFreeTime() {
   const handleYearChange = (e) => {
     setSelectedYear(parseInt(e.target.value));
   };
+  const handleHourChange = (e) => {
+    setSelectedHour(e.target.value);
+  };
+
+  const handleMinuteChange = (e) => {
+    setSelectedMinute(e.target.value);
+  };
 
   const getDaysInMonth = (month, year) => {
     return new Date(year, month, 0).getDate();
@@ -108,11 +116,10 @@ function AddFreeTime() {
                 <select
                   name="day"
                   id="day"
-                  placeholder="Dag"
                   value={selectedDay}
                   onChange={handleDayChange}
                 >
-                  <option value=""></option>
+                  <option value="">Dag</option>
                   {days.map((day, index) => (
                     <option key={index} value={day}>
                       {day}
@@ -123,11 +130,10 @@ function AddFreeTime() {
                 <select
                   name="month"
                   id="month"
-                  placeholder="Månad"
                   value={selectedMonth}
                   onChange={handleMonthChange}
                 >
-                  <option value=""></option>
+                  <option value="">Månad</option>
                   {months.map((month, index) => (
                     <option key={index} value={month}>
                       {month}
@@ -138,11 +144,10 @@ function AddFreeTime() {
                 <select
                   name="year"
                   id="year"
-                  placeholder="År"
                   value={selectedYear}
                   onChange={handleYearChange}
                 >
-                  <option value=""></option>
+                  <option value="">År</option>
                   {years.map((year) => (
                     <option key={year} value={year}>
                       {year}
