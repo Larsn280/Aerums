@@ -7,9 +7,12 @@ namespace Aerums_API.Models
     {
         [Key]
         public int FreeTimeId { get; set; }
-        public string? Date { get; set; }
-        public string? StartTime { get; set; }
-        public string? EndTime { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MMMM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime Date { get; set; }
+        [DisplayFormat(DataFormatString = "{0:HH\\:mm}", ApplyFormatInEditMode = true)]
+        public DateTime StartTime { get; set; }
+        [DisplayFormat(DataFormatString = "{0:HH\\:mm}", ApplyFormatInEditMode = true)]
+        public DateTime EndTime { get; set; }
         public string? Place { get; set; }
         public string? Note { get; set; }
         [ForeignKey("ApplicationUser")]

@@ -30,9 +30,9 @@ namespace Aerums_API.Repositories
                 newFreeTime = new FreeTimeViewModel
                 {
                     FreeTimeId = freeTime.FreeTimeId,
-                    Date = freeTime.Date,
-                    StartTime = freeTime.StartTime,
-                    EndTime = freeTime.EndTime,
+                    Date = freeTime.Date.ToString(),
+                    StartTime = freeTime.StartTime.ToString(),
+                    EndTime = freeTime.EndTime.ToString(),
                     Place = freeTime.Place,
                     Note = freeTime.Note,
                     UserName = freeTime.ApplicationUsers.UserName
@@ -52,9 +52,9 @@ namespace Aerums_API.Repositories
             if (selectedFreeTime != null)
             {
                 freeTime.FreeTimeId = selectedFreeTime.FreeTimeId;
-                freeTime.Date = selectedFreeTime.Date;
-                freeTime.StartTime = selectedFreeTime.StartTime;
-                freeTime.EndTime = selectedFreeTime.EndTime;
+                freeTime.Date = selectedFreeTime.Date.ToString();
+                freeTime.StartTime = selectedFreeTime.StartTime.ToString();
+                freeTime.EndTime = selectedFreeTime.EndTime.ToString();
                 freeTime.Note = selectedFreeTime.Note;
                 freeTime.Place = selectedFreeTime.Place;
                 freeTime.UserName = selectedFreeTime.ApplicationUsers.UserName;
@@ -78,9 +78,9 @@ namespace Aerums_API.Repositories
                     foundFreetimes = new FreeTimeViewModel
                     {
                         FreeTimeId = freeTimes.FreeTimeId,
-                        Date = freeTimes.Date,
-                        StartTime = freeTimes.StartTime,
-                        EndTime = freeTimes.EndTime,
+                        Date = freeTimes.Date.ToString(),
+                        StartTime = freeTimes.StartTime.ToString(),
+                        EndTime = freeTimes.EndTime.ToString(),
                         Place = freeTimes.Place,
                         Note = freeTimes.Note,
                         UserName = freeTimes.ApplicationUsers.UserName
@@ -89,7 +89,7 @@ namespace Aerums_API.Repositories
                 }
                 return myFreetimes;
             }
-            return null;
+            return null!;
         }
         public async Task DeleteFreeTime(int id)
         {
@@ -112,9 +112,16 @@ namespace Aerums_API.Repositories
 
             if (user != null)
             {
-                newFreeTime.Date = input.Date;
-                newFreeTime.StartTime = input.StartTime;
-                newFreeTime.EndTime = input.EndTime;
+                newFreeTime.Date = Convert.ToDateTime(input.Date);
+
+                var startTime = DateTime.MinValue.Date + Convert.ToDateTime(input.StartTime).TimeOfDay;
+                newFreeTime.StartTime = startTime;
+                // newFreeTime.StartTime = Convert.ToDateTime(input.StartTime).TimeOfDay;
+
+                var endTime = DateTime.MinValue.Date + Convert.ToDateTime(input.EndTime).TimeOfDay;
+                newFreeTime.EndTime = endTime;
+                // newFreeTime.EndTime = Convert.ToDateTime(input.EndTime);
+                
                 newFreeTime.Place = input.Place;
                 newFreeTime.Note = input.Note;
                 newFreeTime.ApplicationUsers = user;
@@ -134,9 +141,9 @@ namespace Aerums_API.Repositories
             var selectedFreeTime = await _context.FreeTimeModel!.FindAsync(id);
             var editedFreeTime = new FreeTimeModel
             {
-                Date = input.Date,
-                StartTime = input.StartTime,
-                EndTime = input.EndTime,
+                Date = Convert.ToDateTime(input.Date),
+                StartTime = Convert.ToDateTime(input.StartTime),
+                EndTime = Convert.ToDateTime(input.EndTime),
                 Note = input.Note,
                 Place = input.Place
             };
