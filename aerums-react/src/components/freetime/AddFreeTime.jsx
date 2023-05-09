@@ -3,8 +3,6 @@ import useAuth from "../hooks/useAuth";
 import "./Freetime.css";
 
 function AddFreeTime() {
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
   const [note, setNote] = useState("");
   const [place, setPlace] = useState("");
   const [days, setDays] = useState([]);
@@ -12,16 +10,12 @@ function AddFreeTime() {
   const [selectedDay, setSelectedDay] = useState(0);
   const [selectedMonth, setSelectedMonth] = useState(0);
   const [selectedYear, setSelectedYear] = useState(0);
-  const [selectedHour, setSelectedHour] = useState("");
-  const [selectedMinute, setSelectedMinute] = useState("");
+  const [selectedHourOne, setSelectedHourOne] = useState("");
+  const [selectedMinuteOne, setSelectedMinuteOne] = useState("");
+  const [selectedHourTwo, setSelectedHourTwo] = useState("");
+  const [selectedMinuteTwo, setSelectedMinuteTwo] = useState("");
   const { addFreeTimeApi } = useAuth();
 
-  const handleChangeStartTime = (e) => {
-    setStartTime(e.target.value);
-  };
-  const handleChangeEndTime = (e) => {
-    setEndTime(e.target.value);
-  };
   const handleTextChangeNote = (e) => {
     setNote(e.target.value);
   };
@@ -31,6 +25,8 @@ function AddFreeTime() {
 
   const handleSaveFreeTime = (e) => {
     const date = `${selectedDay}/${selectedMonth}/${selectedYear}`;
+    const startTime = `${selectedHourOne}:${selectedMinuteOne}`;
+    const endTime = `${selectedHourTwo}:${selectedMinuteTwo}`;
     e.preventDefault();
     const freeTime = {
       date,
@@ -84,12 +80,19 @@ function AddFreeTime() {
   const handleYearChange = (e) => {
     setSelectedYear(parseInt(e.target.value));
   };
-  const handleHourChange = (e) => {
-    setSelectedHour(e.target.value);
+  const handleHourChangeOne = (e) => {
+    setSelectedHourOne(e.target.value);
   };
 
-  const handleMinuteChange = (e) => {
-    setSelectedMinute(e.target.value);
+  const handleMinuteChangeOne = (e) => {
+    setSelectedMinuteOne(e.target.value);
+  };
+  const handleHourChangeTwo = (e) => {
+    setSelectedHourTwo(e.target.value);
+  };
+
+  const handleMinuteChangeTwo = (e) => {
+    setSelectedMinuteTwo(e.target.value);
   };
 
   const getDaysInMonth = (month, year) => {
@@ -108,11 +111,11 @@ function AddFreeTime() {
         <h4>Ledig Tid</h4>
         <section className="form-wrapper">
           <form className="form" onSubmit={handleSaveFreeTime}>
+            <label className="date" htmlFor="date">
+              Datum:
+            </label>
             <div className="form-control">
-              <label className="date" htmlFor="date">
-                Datum:
-              </label>
-              <div name="date" id="date">
+              <div name="date" id="date" className="addFreeTimeInputField">
                 <select
                   name="day"
                   id="day"
@@ -157,36 +160,68 @@ function AddFreeTime() {
               </div>
             </div>
 
+            <label className="startTime" htmlFor="startTime">
+              Start Tid:
+            </label>
             <div className="form-control">
-              <label className="startTime" htmlFor="startTime">
-                Start Tid
-              </label>
-              <input
-                onChange={handleChangeStartTime}
-                value={startTime}
-                type="text"
-                id="startTime"
-                name="startTime"
-                autoComplete="off"
-              />
+              <div className="addFreeTimeInputField">
+                <select value={selectedHourOne} onChange={handleHourChangeOne}>
+                  <option value="">Hour</option>
+                  {/* Add hour options from 0 to 23 */}
+                  {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
+                    <option key={hour} value={hour}>
+                      {hour}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  value={selectedMinuteOne}
+                  onChange={handleMinuteChangeOne}
+                >
+                  <option value="">Minute</option>
+                  {/* Add minute options from 0 to 59 */}
+                  {Array.from({ length: 60 }, (_, i) => i).map((minute) => (
+                    <option key={minute} value={minute}>
+                      {minute}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
+
+            <label className="endTime" htmlFor="endTime">
+              Slut Tid:
+            </label>
             <div className="form-control">
-              <label className="endTime" htmlFor="endTime">
-                Slut Tid
-              </label>
-              <input
-                onChange={handleChangeEndTime}
-                value={endTime}
-                type="text"
-                id="endTime"
-                name="endTime"
-                autoComplete="off"
-              />
+              <div className="addFreeTimeInputField">
+                <select value={selectedHourTwo} onChange={handleHourChangeTwo}>
+                  <option value="">Hour</option>
+                  {/* Add hour options from 0 to 23 */}
+                  {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
+                    <option key={hour} value={hour}>
+                      {hour}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  value={selectedMinuteTwo}
+                  onChange={handleMinuteChangeTwo}
+                >
+                  <option value="">Minute</option>
+                  {/* Add minute options from 0 to 59 */}
+                  {Array.from({ length: 60 }, (_, i) => i).map((minute) => (
+                    <option key={minute} value={minute}>
+                      {minute}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
+
+            <label className="note" htmlFor="note">
+              Notis:
+            </label>
             <div className="form-control">
-              <label className="note" htmlFor="note">
-                Notis
-              </label>
               <input
                 onChange={handleTextChangeNote}
                 value={note}
@@ -196,10 +231,11 @@ function AddFreeTime() {
                 autoComplete="off"
               />
             </div>
+
+            <label className="place" htmlFor="place">
+              Plats:
+            </label>
             <div className="form-control">
-              <label className="place" htmlFor="place">
-                Plats
-              </label>
               <input
                 onChange={handleTextChangePlace}
                 value={place}
@@ -209,6 +245,7 @@ function AddFreeTime() {
                 autoComplete="off"
               />
             </div>
+
             <div className="buttons">
               <button type="submit" className="btn">
                 Spara

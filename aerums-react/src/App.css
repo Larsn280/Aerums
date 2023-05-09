@@ -60,7 +60,8 @@ main {
 }
 
 input,
-textarea {
+textarea,
+select {
   border: var(--border-color) solid 1px;
   padding: 0.3rem 0.4rem;
   border-radius: 5px;
@@ -126,7 +127,7 @@ textarea {
 
 .form-control {
   display: flex;
-  gap: 0.5rem;
+  /* gap: 0.5rem; */
   align-items: center;
 }
 
