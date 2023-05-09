@@ -1,0 +1,28 @@
+.addFreeTimeInputField {
+    width: 250px;
+  }
+  
+  .addFreeTimeInputField #day{
+    width: 25%;
+  }
+  
+  .addFreeTimeInputField #month{
+    width: 48%;
+  }
+  
+  .addFreeTimeInputField #year{
+    width: 27%;
+  }
+
+  .addFreeTimeInputField #hour{
+    width: 50%;
+  }
+
+  .addFreeTimeInputField #minute{
+    width: 50%;
+  }
+  
+  .addFreeTimeLable {
+    margin-top: 0.5rem;
+    width: 250px;
+  }

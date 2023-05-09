@@ -8,8 +8,8 @@ namespace Aerums_API.Interfaces
         Task<FreeTimeViewModel> GetFreeTimeByIdAsync(int id);
         public Task<List<FreeTimeViewModel>> ListAllThisUsersFreetimeAsync(string userName);
         Task DeleteFreeTime(int id);
-        Task AddNewFreeTime(FreeTimeViewModel input);
-        Task EditFreeTime(FreeTimeViewModel input, int id);
+        Task AddNewFreeTime(PostFreeTimeViewModel input);
+        Task EditFreeTime(PostFreeTimeViewModel input, int id);
     }
 }
 

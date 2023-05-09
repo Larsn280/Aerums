@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
-import "./Freetime.css";
+import "./AddFreeTime.css";
 
 function AddFreeTime() {
+  const { auth, addFreeTimeApi } = useAuth();
   const [note, setNote] = useState("");
   const [place, setPlace] = useState("");
   const [days, setDays] = useState([]);
@@ -14,7 +15,6 @@ function AddFreeTime() {
   const [selectedMinuteOne, setSelectedMinuteOne] = useState("");
   const [selectedHourTwo, setSelectedHourTwo] = useState("");
   const [selectedMinuteTwo, setSelectedMinuteTwo] = useState("");
-  const { addFreeTimeApi } = useAuth();
 
   const handleTextChangeNote = (e) => {
     setNote(e.target.value);
@@ -25,8 +25,13 @@ function AddFreeTime() {
 
   const handleSaveFreeTime = (e) => {
     const date = `${selectedDay}/${selectedMonth}/${selectedYear}`;
-    const startTime = `${selectedHourOne}:${selectedMinuteOne}`;
-    const endTime = `${selectedHourTwo}:${selectedMinuteTwo}`;
+    const startTime = `${formatNumber(selectedHourOne)}:${formatNumber(
+      selectedMinuteOne
+    )}`;
+    const endTime = `${formatNumber(selectedHourTwo)}:${formatNumber(
+      selectedMinuteTwo
+    )}`;
+    const userName = auth.userName;
     e.preventDefault();
     const freeTime = {
       date,
@@ -34,6 +39,7 @@ function AddFreeTime() {
       endTime,
       note,
       place,
+      userName,
     };
 
     addFreeTimeApi(freeTime);
@@ -71,6 +77,10 @@ function AddFreeTime() {
     setYears(yearRange);
   }, []);
 
+  const formatNumber = (number) => {
+    return number < 10 ? "0" + number : number;
+  };
+
   const handleDayChange = (e) => {
     setSelectedDay(e.target.value);
   };
@@ -99,23 +109,18 @@ function AddFreeTime() {
     return new Date(year, month, 0).getDate();
   };
 
-  const consolelog = () => {
-    console.log(days);
-  };
-
   return (
     <>
-      <button onClick={consolelog}></button>
       <h1 className="page-title">Lägg till ledig tid</h1>
+
       <section className="form-container">
         <h4>Ledig Tid</h4>
+
         <section className="form-wrapper">
           <form className="form" onSubmit={handleSaveFreeTime}>
-            <label className="date" htmlFor="date">
-              Datum:
-            </label>
+            <label className="addFreeTimeLable">Datum:</label>
             <div className="form-control">
-              <div name="date" id="date" className="addFreeTimeInputField">
+              <div className="addFreeTimeInputField">
                 <select
                   name="day"
                   id="day"
@@ -160,21 +165,24 @@ function AddFreeTime() {
               </div>
             </div>
 
-            <label className="startTime" htmlFor="startTime">
-              Start Tid:
-            </label>
+            <label className="addFreeTimeLable">Start Tid:</label>
             <div className="form-control">
               <div className="addFreeTimeInputField">
-                <select value={selectedHourOne} onChange={handleHourChangeOne}>
+                <select
+                  id="hour"
+                  value={selectedHourOne}
+                  onChange={handleHourChangeOne}
+                >
                   <option value="">Hour</option>
                   {/* Add hour options from 0 to 23 */}
                   {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
                     <option key={hour} value={hour}>
-                      {hour}
+                      {formatNumber(hour)}
                     </option>
                   ))}
                 </select>
                 <select
+                  id="minute"
                   value={selectedMinuteOne}
                   onChange={handleMinuteChangeOne}
                 >
@@ -182,28 +190,31 @@ function AddFreeTime() {
                   {/* Add minute options from 0 to 59 */}
                   {Array.from({ length: 60 }, (_, i) => i).map((minute) => (
                     <option key={minute} value={minute}>
-                      {minute}
+                      {formatNumber(minute)}
                     </option>
                   ))}
                 </select>
               </div>
             </div>
 
-            <label className="endTime" htmlFor="endTime">
-              Slut Tid:
-            </label>
+            <label className="addFreeTimeLable">Slut Tid:</label>
             <div className="form-control">
               <div className="addFreeTimeInputField">
-                <select value={selectedHourTwo} onChange={handleHourChangeTwo}>
+                <select
+                  id="hour"
+                  value={selectedHourTwo}
+                  onChange={handleHourChangeTwo}
+                >
                   <option value="">Hour</option>
                   {/* Add hour options from 0 to 23 */}
                   {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
                     <option key={hour} value={hour}>
-                      {hour}
+                      {formatNumber(hour)}
                     </option>
                   ))}
                 </select>
                 <select
+                  id="minute"
                   value={selectedMinuteTwo}
                   onChange={handleMinuteChangeTwo}
                 >
@@ -211,38 +222,36 @@ function AddFreeTime() {
                   {/* Add minute options from 0 to 59 */}
                   {Array.from({ length: 60 }, (_, i) => i).map((minute) => (
                     <option key={minute} value={minute}>
-                      {minute}
+                      {formatNumber(minute)}
                     </option>
                   ))}
                 </select>
               </div>
             </div>
 
-            <label className="note" htmlFor="note">
-              Notis:
-            </label>
+            <label className="addFreeTimeLable">Notis:</label>
             <div className="form-control">
-              <input
+              <textarea
                 onChange={handleTextChangeNote}
                 value={note}
                 type="text"
                 id="note"
                 name="note"
                 autoComplete="off"
+                rows={2}
               />
             </div>
 
-            <label className="place" htmlFor="place">
-              Plats:
-            </label>
+            <label className="addFreeTimeLable">Plats:</label>
             <div className="form-control">
-              <input
+              <textarea
                 onChange={handleTextChangePlace}
                 value={place}
                 type="text"
                 id="place"
                 name="place"
                 autoComplete="off"
+                rows={2}
               />
             </div>
 

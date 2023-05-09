@@ -62,7 +62,7 @@ namespace Aerums_API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddNewFreeTime([FromBody] FreeTimeViewModel input)
+        public async Task<ActionResult> AddNewFreeTime([FromBody] PostFreeTimeViewModel input)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace Aerums_API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> EditFreeTime(FreeTimeViewModel input, int id)
+        public async Task<ActionResult> EditFreeTime(PostFreeTimeViewModel input, int id)
         {
             try
             {

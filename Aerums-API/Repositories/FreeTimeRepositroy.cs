@@ -105,20 +105,31 @@ namespace Aerums_API.Repositories
                 await _context.SaveChangesAsync();
             }
         }
-        public async Task AddNewFreeTime(FreeTimeViewModel input)
+        public async Task AddNewFreeTime(PostFreeTimeViewModel input)
         {
-            var newFreeTime = new FreeTimeModel
+            FreeTimeModel newFreeTime = new FreeTimeModel();
+            var user = await _userManager.FindByEmailAsync(input.UserName!);
+
+            if (user != null)
             {
-                Date = input.Date,
-                StartTime = input.StartTime,
-                EndTime = input.EndTime,
-                Place = input.Place,
-                Note = input.Note,
-            };
-            await _context.AddRangeAsync(newFreeTime);
-            await _context.SaveChangesAsync();
+                newFreeTime.Date = input.Date;
+                newFreeTime.StartTime = input.StartTime;
+                newFreeTime.EndTime = input.EndTime;
+                newFreeTime.Place = input.Place;
+                newFreeTime.Note = input.Note;
+                newFreeTime.ApplicationUsers = user;
+                await _context.FreeTimeModel!.AddAsync(newFreeTime);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception($"No user with email: "+input.UserName+" could be found"); 
+            }
+            
+            // await _context.AddRangeAsync(newFreeTime);
+            // await _context.SaveChangesAsync();
         }
-        public async Task EditFreeTime(FreeTimeViewModel input, int id)
+        public async Task EditFreeTime(PostFreeTimeViewModel input, int id)
         {
             var selectedFreeTime = await _context.FreeTimeModel!.FindAsync(id);
             var editedFreeTime = new FreeTimeModel
