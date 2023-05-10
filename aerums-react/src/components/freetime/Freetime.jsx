@@ -37,7 +37,7 @@ function Freetime() {
       .catch((error) => {
         console.error(error);
       });
-  }, [auth.userName, freeTimeApi, freetimeData]);
+  }, [auth.userName, freeTimeApi]);
 
   const addFreeTimeClickHandler = () => {
     navigate("/addFreeTime");
