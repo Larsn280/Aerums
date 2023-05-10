@@ -13,7 +13,7 @@ function Freetime() {
       .then((data) => {
         const formattedData = data.map((item) => {
           const date = new Date(item.date);
-          const formattedDate = date.toISOString().slice(0, 10);
+          const formattedDate = date.toLocaleDateString("sv-SE").slice(0, 10);
           const startTime = new Date(item.startTime);
           const formattedStartTime = startTime.toLocaleTimeString([], {
             hour: "2-digit",

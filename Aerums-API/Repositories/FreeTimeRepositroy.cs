@@ -114,13 +114,13 @@ namespace Aerums_API.Repositories
             {
                 newFreeTime.Date = Convert.ToDateTime(input.Date);
 
-                var startTime = DateTime.MinValue.Date + Convert.ToDateTime(input.StartTime).TimeOfDay;
-                newFreeTime.StartTime = startTime;
-                // newFreeTime.StartTime = Convert.ToDateTime(input.StartTime).TimeOfDay;
+                // var startTime = DateTime.MinValue.Date + Convert.ToDateTime(input.StartTime).TimeOfDay;
+                // newFreeTime.StartTime = startTime;
+                newFreeTime.StartTime = Convert.ToDateTime(input.StartTime);
 
-                var endTime = DateTime.MinValue.Date + Convert.ToDateTime(input.EndTime).TimeOfDay;
-                newFreeTime.EndTime = endTime;
-                // newFreeTime.EndTime = Convert.ToDateTime(input.EndTime);
+                // var endTime = DateTime.MinValue.Date + Convert.ToDateTime(input.EndTime).TimeOfDay;
+                // newFreeTime.EndTime = endTime;
+                newFreeTime.EndTime = Convert.ToDateTime(input.EndTime);
                 
                 newFreeTime.Place = input.Place;
                 newFreeTime.Note = input.Note;
