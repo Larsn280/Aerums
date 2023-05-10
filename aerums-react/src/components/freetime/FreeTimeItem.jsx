@@ -1,16 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
 
-function FreeTimeItem({ item }) {
+function FreeTimeItem({ item, handleDeleteFreeTime }) {
   const navigate = useNavigate();
-  const { deleteFreeTimeApi } = useAuth();
 
   const editFreetime = () => {
     console.log("edit");
   };
 
   const deleteFreetime = () => {
-    deleteFreeTimeApi(item.freeTimeId);
+    handleDeleteFreeTime(item.freeTimeId);
   };
 
   return (

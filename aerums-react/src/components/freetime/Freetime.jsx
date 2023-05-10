@@ -6,10 +6,14 @@ import "./Freetime.css";
 
 function Freetime() {
   const navigate = useNavigate();
-  const { auth, freeTimeApi } = useAuth();
+  const { auth, freeTimeApi, deleteFreeTimeApi } = useAuth();
   const [freetimeData, setFreetimeData] = useState([]);
 
   useEffect(() => {
+    fetchFreeTimeData();
+  }, []);
+
+  const fetchFreeTimeData = () => {
     freeTimeApi(auth.userName)
       .then((data) => {
         const formattedData = data.map((item) => {
@@ -37,7 +41,18 @@ function Freetime() {
       .catch((error) => {
         console.error(error);
       });
-  }, [auth.userName, freeTimeApi]);
+  };
+
+  const handleDeleteFreeTime = (freeTimeId) => {
+    deleteFreeTimeApi(freeTimeId)
+      .then(() => {
+        // After successful deletion, fetch the updated data
+        fetchFreeTimeData();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const addFreeTimeClickHandler = () => {
     navigate("/addFreeTime");
@@ -58,7 +73,11 @@ function Freetime() {
         </thead>
         <tbody>
           {freetimeData.map((item) => (
-            <FreeTimeItem item={item} key={item.freeTimeId} />
+            <FreeTimeItem
+              item={item}
+              key={item.freeTimeId}
+              handleDeleteFreeTime={handleDeleteFreeTime}
+            />
           ))}
         </tbody>
       </table>
