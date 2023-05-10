@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import "./AddFreeTime.css";
 
 function AddFreeTime() {
+  const navigate = useNavigate();
   const { auth, addFreeTimeApi } = useAuth();
   const [note, setNote] = useState("");
   const [place, setPlace] = useState("");
@@ -23,7 +25,7 @@ function AddFreeTime() {
     setPlace(e.target.value);
   };
 
-  const handleSaveFreeTime = (e) => {
+  const handleSaveFreeTime = async (e) => {
     const date = `${selectedDay}/${selectedMonth}/${selectedYear}`;
     const startTime = `${formatNumber(selectedHourOne)}:${formatNumber(
       selectedMinuteOne
@@ -42,7 +44,7 @@ function AddFreeTime() {
       userName,
     };
 
-    addFreeTimeApi(freeTime);
+    await addFreeTimeApi(freeTime).then(navigate("/freetime"));
   };
 
   const months = [

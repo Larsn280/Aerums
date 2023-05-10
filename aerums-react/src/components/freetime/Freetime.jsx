@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import FreeTimeItem from "./FreeTimeItem";
 import "./Freetime.css";
 
 function Freetime() {
@@ -36,15 +37,7 @@ function Freetime() {
       .catch((error) => {
         console.error(error);
       });
-  }, [auth.userName, freeTimeApi]);
-
-  const editFreetime = () => {
-    console.log("edit");
-  };
-
-  const deleteFreetime = () => {
-    console.log("delete");
-  };
+  }, [auth.userName, freeTimeApi, freetimeData]);
 
   const addFreeTimeClickHandler = () => {
     navigate("/addFreeTime");
@@ -65,23 +58,7 @@ function Freetime() {
         </thead>
         <tbody>
           {freetimeData.map((item) => (
-            <tr key={item.id}>
-              <td>{item.date}</td>
-              <td>{item.startTime}</td>
-              <td>{item.endTime}</td>
-              <td>{item.note}</td>
-              <td>{item.place}</td>
-              <td>
-                <button className="yellowBtn" onClick={editFreetime}>
-                  Ändra
-                </button>
-              </td>
-              <td>
-                <button className="redBtn" onClick={deleteFreetime}>
-                  Radera
-                </button>
-              </td>
-            </tr>
+            <FreeTimeItem item={item} key={item.freeTimeId} />
           ))}
         </tbody>
       </table>

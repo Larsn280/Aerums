@@ -44,7 +44,6 @@ export const bookingApi = async (userName) => {
 };
 
 export const addFreeTimeApi = async (freetime) => {
-  console.log(freetime);
   try {
     const response = await fetch(`${process.env.REACT_APP_BASEURL}/freetime`, {
       method: "POST",
@@ -56,6 +55,25 @@ export const addFreeTimeApi = async (freetime) => {
 
     if (response.status >= 200 && response.status <= 299) {
       console.log("Tiden är sparad");
+    } else {
+      console.log("Det gick fel någonstans");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteFreeTimeApi = async (id) => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BASEURL}/freetime/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (response.status >= 200 && response.status <= 299) {
+      console.log("Tiden är borttagen");
     } else {
       console.log("Det gick fel någonstans");
     }
