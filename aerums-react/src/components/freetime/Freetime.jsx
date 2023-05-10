@@ -58,6 +58,10 @@ function Freetime() {
     navigate("/addFreeTime");
   };
 
+  const handleAddFreeTimeItem = (newItem) => {
+    setFreetimeData((prevData) => [...prevData, newItem]);
+  };
+
   return (
     <div className="freetimeContainer">
       <h1 className="page-title">Lediga Tider</h1>
@@ -77,6 +81,7 @@ function Freetime() {
               item={item}
               key={item.freeTimeId}
               handleDeleteFreeTime={handleDeleteFreeTime}
+              addFreeTimeItem={handleAddFreeTimeItem}
             />
           ))}
         </tbody>

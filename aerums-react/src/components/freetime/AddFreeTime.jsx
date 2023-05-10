@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import "./AddFreeTime.css";
 
 function AddFreeTime() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { addFreeTimeItem } = location.state || {};
   const { auth, addFreeTimeApi } = useAuth();
   const [note, setNote] = useState("");
   const [place, setPlace] = useState("");
@@ -44,7 +46,15 @@ function AddFreeTime() {
       userName,
     };
 
-    await addFreeTimeApi(freeTime).then(navigate("/freetime"));
+    await addFreeTimeApi(freeTime)
+      .then((newItem) => {
+        // Call the addFreeTimeItem callback with the new item
+        addFreeTimeItem && addFreeTimeItem(newItem);
+        navigate("/freetime");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const months = [
