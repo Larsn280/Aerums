@@ -26,3 +26,21 @@
     margin-top: 0.5rem;
     width: 250px;
   }
+
+  .submitFreeTimeDiv {
+    display: flex;
+    align-items: center;
+
+    margin: 1.5rem 0rem 0rem 0rem;
+  }
+
+  .submitFreeTimeDiv button {
+    background-color: #859e6b;
+    height: 40px;
+    width: 150px;
+    cursor: pointer;
+  }
+
+  .submitFreeTimeDiv button:hover {
+    background-color: #d9d9d9;
+  }

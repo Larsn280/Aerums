@@ -255,10 +255,8 @@ function AddFreeTime() {
               />
             </div>
 
-            <div className="buttons">
-              <button type="submit" className="btn">
-                Spara
-              </button>
+            <div className="submitFreeTimeDiv">
+              <button type="submit">Spara</button>
             </div>
           </form>
         </section>
