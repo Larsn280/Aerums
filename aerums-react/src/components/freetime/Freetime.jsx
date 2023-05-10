@@ -53,11 +53,6 @@ function Freetime() {
   return (
     <div className="freetimeContainer">
       <h1 className="page-title">Lediga Tider</h1>
-      <div className="addMyFreeTimeDiv">
-        <button className="btn" onClick={addFreeTimeClickHandler}>
-          Lägg till tid för att ses
-        </button>
-      </div>
       <table>
         <thead>
           <tr>
@@ -90,6 +85,9 @@ function Freetime() {
           ))}
         </tbody>
       </table>
+      <div className="addMyFreeTimeDiv">
+        <button onClick={addFreeTimeClickHandler}>Lägg till tid</button>
+      </div>
     </div>
   );
 }
