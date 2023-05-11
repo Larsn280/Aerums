@@ -67,11 +67,11 @@ function EditFreeTime() {
       setNote(response.note);
       setPlace(response.place);
       const dateArray = response.date.split("-");
-      setSelectedDay(dateArray[2]);
+      setSelectedDay(checkSubstring(dateArray[0]));
       setSelectedMonth(
         dateArray[1].charAt(0).toUpperCase() + dateArray[1].slice(1)
       );
-      setSelectedYear(dateArray[0]);
+      setSelectedYear(dateArray[2]);
       const startTimeArray = response.startTime.split(":");
       setSelectedHourOne(checkSubstring(startTimeArray[0]));
       setSelectedMinuteOne(checkSubstring(startTimeArray[1]));
