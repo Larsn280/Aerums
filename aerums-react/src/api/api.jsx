@@ -63,6 +63,30 @@ export const addFreeTimeApi = async (freetime) => {
   }
 };
 
+export const getFreeTimeApi = async (id) => {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_BASEURL}/freetime/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Invalid credentials");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const deleteFreeTimeApi = async (id) => {
   try {
     const response = await fetch(

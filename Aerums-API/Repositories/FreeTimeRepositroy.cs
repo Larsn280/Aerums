@@ -45,24 +45,25 @@ namespace Aerums_API.Repositories
         }
         public async Task<FreeTimeViewModel> GetFreeTimeByIdAsync(int id)
         {
-            var selectedFreeTime = await _context.FreeTimeModel!.FindAsync(id);
-
             FreeTimeViewModel freeTime = new FreeTimeViewModel();
+            var selectedFreeTime = await _context.FreeTimeModel!.FindAsync(id);
 
             if (selectedFreeTime != null)
             {
+                
                 freeTime.FreeTimeId = selectedFreeTime.FreeTimeId;
-                freeTime.Date = selectedFreeTime.Date.ToString();
-                freeTime.StartTime = selectedFreeTime.StartTime.ToString();
-                freeTime.EndTime = selectedFreeTime.EndTime.ToString();
+                freeTime.Date = selectedFreeTime.Date.ToString("yyyy-MMMM-dd");
+                freeTime.StartTime = selectedFreeTime.StartTime.ToString("HH:mm");
+                freeTime.EndTime = selectedFreeTime.EndTime.ToString("HH:mm");
                 freeTime.Note = selectedFreeTime.Note;
                 freeTime.Place = selectedFreeTime.Place;
-                freeTime.UserName = selectedFreeTime.ApplicationUsers.UserName;
+                // Kommer in som null av nån anledning? 
+                // freeTime.UserName = selectedFreeTime.ApplicationUsers.UserName;
 
                 return freeTime;
+            } else {
+                throw new Exception($"No freetime with id: "+id+" could be found");
             }
-
-            return null!;
         }
 
         public async Task<List<FreeTimeViewModel>> ListAllThisUsersFreetimeAsync(string userName)

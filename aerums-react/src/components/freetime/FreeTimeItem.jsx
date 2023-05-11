@@ -4,7 +4,7 @@ function FreeTimeItem({ item, handleDeleteFreeTime }) {
   const navigate = useNavigate();
 
   const editFreetime = () => {
-    console.log("edit");
+    navigate(`/editFreeTime/${item.freeTimeId}`);
   };
 
   const deleteFreetime = () => {
