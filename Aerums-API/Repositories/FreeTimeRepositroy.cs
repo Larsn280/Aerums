@@ -52,7 +52,7 @@ namespace Aerums_API.Repositories
             {
                 
                 freeTime.FreeTimeId = selectedFreeTime.FreeTimeId;
-                freeTime.Date = selectedFreeTime.Date.ToString("yyyy-MMMM-dd");
+                freeTime.Date = selectedFreeTime.Date.ToString();
                 freeTime.StartTime = selectedFreeTime.StartTime.ToString("HH:mm");
                 freeTime.EndTime = selectedFreeTime.EndTime.ToString("HH:mm");
                 freeTime.Note = selectedFreeTime.Note;
