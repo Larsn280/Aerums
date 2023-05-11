@@ -84,9 +84,13 @@ function EditFreeTime() {
   const checkSubstring = (substring) => {
     const splited = substring.split("0");
     console.log(splited);
-    if (splited.length > 1) {
+    if (splited.length === 3) {
+      return 0;
+    }
+    if (splited.length === 2) {
       return splited[1];
-    } else {
+    }
+    if (splited.length === 1) {
       return splited[0];
     }
   };
@@ -128,7 +132,7 @@ function EditFreeTime() {
   };
 
   const handleDayChange = (e) => {
-    setSelectedMonth(e.target.value);
+    setSelectedDay(e.target.value);
   };
   const handleMonthChange = (e) => {
     setSelectedMonth(e.target.value);
