@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 function EditFreeTime() {
   const params = useParams();
-  const { auth, getFreeTimeApi } = useAuth();
+  const navigate = useNavigate();
+  const { auth, getFreeTimeApi, editFreeTimeApi } = useAuth();
   const [id, setId] = useState();
-  const [date, setDate] = useState();
-  const [startTime, setStartTime] = useState();
-  const [endTime, setEndTime] = useState();
   const [note, setNote] = useState();
   const [place, setPlace] = useState();
   const [days, setDays] = useState([]);
@@ -43,6 +41,7 @@ function EditFreeTime() {
     const userName = auth.userName;
     e.preventDefault();
     const editedFreeTime = {
+      id,
       date,
       startTime,
       endTime,
@@ -50,6 +49,14 @@ function EditFreeTime() {
       place,
       userName,
     };
+
+    await editFreeTimeApi(editedFreeTime)
+      .then(() => {
+        navigate("/freetime");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const fetchFreeTime = async (id) => {
@@ -60,10 +67,7 @@ function EditFreeTime() {
         console.log("Kund int fin andar eld så gik ir fel");
       }
 
-      setId(response.id);
-      setDate(response.date);
-      setStartTime(response.startTime);
-      setEndTime(response.endTime);
+      setId(response.freeTimeId);
       setNote(response.note);
       setPlace(response.place);
       const dateArray = response.date.split("-");

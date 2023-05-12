@@ -63,6 +63,26 @@ export const addFreeTimeApi = async (freetime) => {
   }
 };
 
+export const editFreeTimeApi = async (freetime) => {
+  try {
+    const response = await fetch(`${process.env.REACT_APP_BASEURL}/freetime`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(freetime),
+    });
+
+    if (response.status >= 200 && response.status <= 299) {
+      console.log("Tiden är ändrad");
+    } else {
+      console.log("Det gick fel någonstans");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const getFreeTimeApi = async (id) => {
   try {
     const response = await fetch(

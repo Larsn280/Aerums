@@ -76,12 +76,12 @@ namespace Aerums_API.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> EditFreeTime(PostFreeTimeViewModel input, int id)
+        [HttpPut()]
+        public async Task<ActionResult> EditFreeTime([FromBody] PutFreeTimeViewModel input)
         {
             try
             {
-                await _freeTimeRepo.EditFreeTime(input, id);
+                await _freeTimeRepo.EditFreeTime(input);
 
                 return StatusCode(201);
             }

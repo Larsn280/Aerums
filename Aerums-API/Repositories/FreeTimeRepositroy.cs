@@ -137,20 +137,20 @@ namespace Aerums_API.Repositories
             // await _context.AddRangeAsync(newFreeTime);
             // await _context.SaveChangesAsync();
         }
-        public async Task EditFreeTime(PostFreeTimeViewModel input, int id)
+        public async Task EditFreeTime(PutFreeTimeViewModel input)
         {
-            var selectedFreeTime = await _context.FreeTimeModel!.FindAsync(id);
-            var editedFreeTime = new FreeTimeModel
+            var selectedFreeTime = await _context.FreeTimeModel!.FindAsync(input.Id);
+    
+            if (selectedFreeTime != null)
             {
-                Date = Convert.ToDateTime(input.Date),
-                StartTime = Convert.ToDateTime(input.StartTime),
-                EndTime = Convert.ToDateTime(input.EndTime),
-                Note = input.Note,
-                Place = input.Place
-            };
-            _context.FreeTimeModel.UpdateRange(editedFreeTime);
-            await _context.SaveChangesAsync();
-        }
+                selectedFreeTime.Date = Convert.ToDateTime(input.Date);
+                selectedFreeTime.StartTime = Convert.ToDateTime(input.StartTime);
+                selectedFreeTime.EndTime = Convert.ToDateTime(input.EndTime);
+                selectedFreeTime.Note = input.Note;
+                selectedFreeTime.Place = input.Place;
 
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }
