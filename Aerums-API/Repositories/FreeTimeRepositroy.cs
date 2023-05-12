@@ -20,14 +20,15 @@ namespace Aerums_API.Repositories
 
         public async Task<List<FreeTimeViewModel>> ListAllFreeTimesAsync()
         {
-            List<FreeTimeModel> allFreeTimes = await _context.FreeTimeModel!.ToListAsync();
+            List<FreeTimeModel> allFreeTimes = await _context.FreeTimeModel!
+            .Include(f => f.ApplicationUsers) // Include ApplicationUsers to load the related entity
+            .ToListAsync();
             List<FreeTimeViewModel> freeTimers = new List<FreeTimeViewModel>();
-            var newFreeTime = new FreeTimeViewModel();
 
             foreach (var freeTime in allFreeTimes)
             {
 
-                newFreeTime = new FreeTimeViewModel
+                FreeTimeViewModel newFreeTime = new FreeTimeViewModel
                 {
                     FreeTimeId = freeTime.FreeTimeId,
                     Date = freeTime.Date.ToString(),
@@ -35,7 +36,7 @@ namespace Aerums_API.Repositories
                     EndTime = freeTime.EndTime.ToString(),
                     Place = freeTime.Place,
                     Note = freeTime.Note,
-                    UserName = freeTime.ApplicationUsers.UserName
+                    UserName = freeTime.ApplicationUsers?.UserName
                 };
 
                 freeTimers.Add(newFreeTime);
