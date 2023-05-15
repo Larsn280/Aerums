@@ -1,5 +1,5 @@
 .profileContainer {
-    width: 800px;
+    width:800px;
 }
 
 .profileContainer h1 {
@@ -11,3 +11,56 @@
     text-align: center;
     margin: 0rem 0rem 1.5rem 0rem;
 }
+
+.profileImageContainer {
+    display: flex;
+    align-items: center;
+
+    margin-top: 6rem;
+    border: 1px solid black;
+
+    width: 200px;
+    height: 200px;
+}
+
+.submitProfileDiv {
+    display: flex;
+    align-items: center;
+
+    margin: 1.5rem 0rem 0rem 0rem;
+  }
+
+  .submitProfileDiv button {
+    background-color: #859e6b;
+    height: 40px;
+    width: 150px;
+    cursor: pointer;
+  }
+
+  .submitProfileDiv button:hover {
+    background-color: #d9d9d9;
+  }
+
+  .profileLableDiv {
+    margin-top: 0.5rem;
+  }
+
+  .form-containerProfile {
+    margin-top: 2rem;
+    max-width: 700px;
+    border: #888 solid 1px;
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.6);
+    background-color: #737272;
+  }
+
+  .form-wrapperProfile {
+    padding:1rem;
+    margin: 1rem 0;
+  }
+
+  .form-controlProfile input{
+    height:2.5rem;
+    width: 100%;
+  }
+
+  
