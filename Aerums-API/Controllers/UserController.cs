@@ -19,5 +19,10 @@ namespace Aerums_API.Controllers
         public async Task<ActionResult<List<DisplayUserViewModel>>> ListAllUsers() {
             return Ok(await _userRepo.ListAllUsersAsync());
         }
+
+        [HttpGet("{userName}")]
+        public async Task <ActionResult<DisplayUserViewModel>> GetLoggedInUserByUserName(string userName) {
+            return Ok(await _userRepo.GetLoggedInUserByUserNameAsync(userName));
+        }
     }
 }

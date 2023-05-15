@@ -39,42 +39,42 @@ const Navbar = () => {
               <NavLink
                 className="nav_Link"
                 to="/calendar"
-                activeClassName="active"
+                activeclassname="active"
               >
                 <i className="fa fa-calendar"></i> Kalender
               </NavLink>
               <NavLink
                 className="nav_Link"
                 to="/friends"
-                activeClassName="active"
+                activeclassname="active"
               >
                 <i className="fa fa-group"></i> Vänner
               </NavLink>
               <NavLink
                 className="nav_Link"
                 to="/freetime"
-                activeClassName="active"
+                activeclassname="active"
               >
                 <i className="fa fa-smile-o"></i> Lediga tider
               </NavLink>
               <NavLink
                 className="nav_Link"
                 to="/booking"
-                activeClassName="active"
+                activeclassname="active"
               >
                 <i className="fa fa-book"></i> Bokningar
               </NavLink>
               <NavLink
                 className="nav_Link"
                 to="/profile"
-                activeClassName="active"
+                activeclassname="active"
               >
                 <i className="fa fa-user-circle-o"></i> Profil
               </NavLink>
               <NavLink
                 className="nav_Link"
                 to="/activitys"
-                activeClassName="active"
+                activeclassname="active"
               >
                 <i className="fa fa-tree"></i> Aktiviteter
               </NavLink>
@@ -82,7 +82,7 @@ const Navbar = () => {
                 className="nav_Link"
                 onClick={logOut}
                 to="/"
-                activeClassName="active"
+                activeclassname="active"
               >
                 <i className="fa fa-close"></i> Logga ut
               </NavLink>

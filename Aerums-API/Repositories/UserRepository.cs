@@ -14,6 +14,20 @@ namespace Aerums_API.Repositories
             _userManager = userManager;
         }
 
+        public async Task<DisplayUserViewModel> GetLoggedInUserByUserNameAsync(string userName)
+        {
+            var user = await _userManager.FindByEmailAsync(userName);
+            DisplayUserViewModel loggedInUser = new DisplayUserViewModel();
+
+            if(user != null) {
+                loggedInUser.UserName = user.UserName;
+                loggedInUser.FirstName = user.FirstName;
+                loggedInUser.LastName = user.LastName;
+            }
+
+            return loggedInUser;
+        }
+
         public async Task<List<DisplayUserViewModel>> ListAllUsersAsync() {
 
             List<DisplayUserViewModel> allUsers = new List<DisplayUserViewModel>();

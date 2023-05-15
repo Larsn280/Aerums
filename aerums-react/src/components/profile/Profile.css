@@ -14,13 +14,17 @@
 
 .profileImageContainer {
     display: flex;
-    align-items: center;
 
     margin-top: 6rem;
     border: 1px solid black;
 
     width: 200px;
     height: 200px;
+}
+
+.profileImage {
+  width: 200px;
+  height:200px;
 }
 
 .submitProfileDiv {
