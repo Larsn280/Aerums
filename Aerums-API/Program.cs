@@ -46,7 +46,7 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(
-            Encoding.ASCII.GetBytes(builder.Configuration.GetValue<string>("apiKey")!)
+            Convert.FromBase64String(builder.Configuration.GetValue<string>("apiKey")!)
         ),
         ValidateLifetime = true,
         ValidateAudience = false,

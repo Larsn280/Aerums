@@ -90,7 +90,7 @@ namespace LNSchool_API.Controllers
 
         private async Task<string> CreateJwtToken(ApplicationUser user)
         {
-            var key = Encoding.ASCII.GetBytes(_config.GetValue<string>("apiKey")!);
+            var key = Convert.FromBase64String(_config.GetValue<string>("apiKey")!);
             var userClaims = (await _userManager.GetClaimsAsync(user)).ToList();
 
             var jwt = new JwtSecurityToken(
