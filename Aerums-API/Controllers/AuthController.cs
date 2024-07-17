@@ -19,8 +19,6 @@ namespace LNSchool_API.Controllers
         private readonly SignInManager<ApplicationUser> _signManager;
         private readonly IConfiguration _config;
 
-        //Testing
-
         public AuthController(IConfiguration config, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _roleManager = roleManager;
